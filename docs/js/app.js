@@ -1,12 +1,13 @@
 /**
- * app.js — Libras Wild: fila de segmentos pré-computados + anotação manual.
+ * app.js — Libras Wild: anota sinais em qualquer vídeo do YouTube.
  *
- * Fluxo principal:
- *  1. Carrega config.json + segments.json
- *  2. Para cada segmento: carrega vídeo, salta para t_start/t_end automaticamente
- *  3. Usuário revisa o trecho (preview automático) e anota
- *  4. Ao salvar, avança para o próximo segmento não anotado
- *  5. Também suporta anotação manual via URL do YouTube
+ * Fluxo:
+ *  1. Usuário cola URL do YouTube
+ *  2. Vídeo carrega no player
+ *  3. Usuário assiste e clica "Marcar Início" / "Marcar Fim" no momento certo
+ *  4. Preenche o formulário de anotação
+ *  5. Salva em IndexedDB + lista os segmentos da sessão
+ *  6. Exporta JSON para contribuição ao dataset
  */
 
 // ── Estado ────────────────────────────────────────────────────
@@ -16,14 +17,7 @@ let ytReady    = false;
 let currentVideoId = null;
 let tStart     = null;
 let tEnd       = null;
-let sessionAnns = [];
-
-// Fila de segmentos pré-computados
-let config      = null;
-let segments    = [];
-let currentSegIdx = 0;
-let annotatedIds  = new Set();
-let playerReady   = false;   // player pronto para seekTo
+let sessionAnns = [];   // anotações desta sessão (para exibir na lista)
 
 // ── YouTube IFrame API ────────────────────────────────────────
 window.onYouTubeIframeAPIReady = function () {
@@ -32,113 +26,17 @@ window.onYouTubeIframeAPIReady = function () {
     height: "100%",
     width:  "100%",
     videoId: "",
-    playerVars: { controls: 1, modestbranding: 1, rel: 0, iv_load_policy: 3 },
-    events: {
-      onReady: () => {
-        playerReady = true;
-        // Se segmentos já carregados, vai para o primeiro
-        if (segments.length) loadSegment(currentSegIdx);
-      },
-      onStateChange: onPlayerStateChange,
-    }
+    playerVars: {
+      controls:        1,
+      modestbranding:  1,
+      rel:             0,
+      iv_load_policy:  3,
+    },
+    events: { onReady: () => {} }
   });
 };
 
-// Para automaticamente ao atingir tEnd durante preview
-function onPlayerStateChange(e) {
-  if (e.data === YT.PlayerState.PLAYING && tEnd !== null) {
-    const check = setInterval(() => {
-      if (!ytPlayer) { clearInterval(check); return; }
-      const t = ytPlayer.getCurrentTime();
-      if (t >= tEnd) {
-        ytPlayer.pauseVideo();
-        clearInterval(check);
-      }
-    }, 200);
-  }
-}
-
-// ── Fila de segmentos ─────────────────────────────────────────
-async function initSegmentQueue() {
-  try {
-    [config, segments] = await Promise.all([
-      fetch("data/config.json").then(r => r.json()),
-      fetch("data/segments.json").then(r => r.json()),
-    ]);
-    // Marca já anotados
-    const existing = await getAllAnnotations();
-    existing.forEach(a => annotatedIds.add(a.seg_id));
-
-    // Primeiro segmento não anotado
-    let first = segments.findIndex(s => !annotatedIds.has(s.id));
-    if (first < 0) first = 0;
-    currentSegIdx = first;
-
-    document.getElementById("seg-nav").style.display = "block";
-    updateSegNavUI();
-
-    if (playerReady) loadSegment(currentSegIdx);
-  } catch (err) {
-    console.warn("segments.json indisponível — modo manual.", err);
-  }
-}
-
-function loadSegment(idx) {
-  if (!segments.length || idx < 0 || idx >= segments.length) return;
-  if (!playerReady) { currentSegIdx = idx; return; }
-
-  const seg = segments[idx];
-  currentSegIdx = idx;
-  const vid = config.youtube_id;
-
-  document.getElementById("video-placeholder").style.display = "none";
-  document.getElementById("yt-url-input").value = `https://youtu.be/${vid}`;
-  document.getElementById("time-controls").style.display = "block";
-
-  if (currentVideoId !== vid) {
-    currentVideoId = vid;
-    ytPlayer.loadVideoById({ videoId: vid, startSeconds: seg.t_start });
-    // onReady do vídeo dispara onPlayerStateChange; pausamos via seekTo após buffer
-    setTimeout(() => { ytPlayer.pauseVideo(); setSegmentTimes(seg); }, 1500);
-  } else {
-    ytPlayer.seekTo(seg.t_start, true);
-    ytPlayer.pauseVideo();
-    setSegmentTimes(seg);
-  }
-  updateSegNavUI();
-}
-
-function setSegmentTimes(seg) {
-  tStart = seg.t_start;
-  tEnd   = seg.t_end;
-  document.getElementById("t-start").value = formatTime(tStart);
-  document.getElementById("t-end").value   = formatTime(tEnd);
-  updateDuration();
-}
-
-function updateSegNavUI() {
-  if (!segments.length) return;
-  const seg = segments[currentSegIdx];
-  document.getElementById("seg-counter").textContent =
-    `Segmento ${currentSegIdx + 1} / ${segments.length}`;
-  document.getElementById("seg-annotated").textContent =
-    `${annotatedIds.size} anotados`;
-  document.getElementById("seg-id-label").textContent = seg.id;
-  document.getElementById("btn-seg-prev").disabled = currentSegIdx <= 0;
-  document.getElementById("btn-seg-next").disabled = currentSegIdx >= segments.length - 1;
-  // Destaca se já anotado
-  const nav = document.getElementById("seg-nav");
-  nav.classList.toggle("seg-done", annotatedIds.has(seg.id));
-}
-
-function segNext() {
-  if (currentSegIdx < segments.length - 1) loadSegment(currentSegIdx + 1);
-}
-function segPrev() {
-  if (currentSegIdx > 0) loadSegment(currentSegIdx - 1);
-}
-
-// ── Extrai ID do YouTube ──────────────────────────────────────
+// ── Extrai ID do YouTube de qualquer formato de URL ───────────
 function extractYtId(url) {
   url = url.trim();
   const patterns = [
@@ -152,18 +50,27 @@ function extractYtId(url) {
   return null;
 }
 
-// ── Carregar vídeo manualmente ────────────────────────────────
+// ── Carrega vídeo ─────────────────────────────────────────────
 function loadVideo() {
   const raw = document.getElementById("yt-url-input").value;
   const vid = extractYtId(raw);
-  if (!vid) { flashStatus("URL inválida.", "error"); return; }
-  if (!playerReady) { flashStatus("Player carregando…", "error"); return; }
+  if (!vid) {
+    flashStatus("URL inválida. Use um link do YouTube.", "error");
+    return;
+  }
+  if (!ytPlayer || !ytPlayer.loadVideoById) {
+    flashStatus("Player ainda carregando, tente em 2 segundos.", "error");
+    return;
+  }
+
   currentVideoId = vid;
   document.getElementById("video-placeholder").style.display = "none";
   ytPlayer.loadVideoById(vid);
   clearTimes();
+
   document.getElementById("time-controls").style.display = "block";
-  flashStatus("Vídeo carregado.", "ok");
+  document.getElementById("time-hint").style.display = "block";
+  flashStatus("Vídeo carregado. Assista e marque o trecho.", "ok");
 }
 
 // ── Marcação de tempos ────────────────────────────────────────
@@ -172,6 +79,7 @@ function markStart() {
   tStart = parseFloat(ytPlayer.getCurrentTime().toFixed(2));
   document.getElementById("t-start").value = formatTime(tStart);
   updateDuration();
+  flashStatus(`Início marcado: ${formatTime(tStart)}`, "ok");
 }
 
 function markEnd() {
@@ -179,6 +87,7 @@ function markEnd() {
   tEnd = parseFloat(ytPlayer.getCurrentTime().toFixed(2));
   document.getElementById("t-end").value = formatTime(tEnd);
   updateDuration();
+  flashStatus(`Fim marcado: ${formatTime(tEnd)}`, "ok");
 }
 
 function updateDuration() {
@@ -187,6 +96,7 @@ function updateDuration() {
     const dur = (tEnd - tStart).toFixed(2);
     el.textContent = `${dur}s`;
     el.style.color = dur < 0.3 ? "var(--red)" : "var(--green)";
+    // Habilita botão salvar se formulário ok
     checkFormReady();
   } else if (tEnd !== null && tStart !== null && tEnd <= tStart) {
     el.textContent = "⚠ fim antes do início";
@@ -198,7 +108,8 @@ function updateDuration() {
 }
 
 function clearTimes() {
-  tStart = null; tEnd = null;
+  tStart = null;
+  tEnd   = null;
   document.getElementById("t-start").value = "";
   document.getElementById("t-end").value   = "";
   document.getElementById("time-dur").textContent = "—";
@@ -208,13 +119,20 @@ function clearTimes() {
 
 function previewSegment() {
   if (!ytPlayer || tStart === null || tEnd === null || tEnd <= tStart) {
-    flashStatus("Marque início e fim primeiro.", "error"); return;
+    flashStatus("Marque início e fim primeiro.", "error");
+    return;
   }
   ytPlayer.seekTo(tStart, true);
   ytPlayer.playVideo();
+  // Para automaticamente no fim
+  const duration = (tEnd - tStart) * 1000;
+  setTimeout(() => {
+    if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING)
+      ytPlayer.pauseVideo();
+  }, duration + 200);
 }
 
-// ── Validação ─────────────────────────────────────────────────
+// ── Validação do formulário ───────────────────────────────────
 function checkFormReady() {
   const ok = currentVideoId && tStart !== null && tEnd !== null && tEnd > tStart;
   document.getElementById("btn-submit").disabled = !ok;
@@ -223,14 +141,17 @@ function checkFormReady() {
 // ── Submissão ─────────────────────────────────────────────────
 async function submitAnnotation() {
   if (!currentVideoId || tStart === null || tEnd === null || tEnd <= tStart) {
-    flashStatus("Marque início e fim.", "error"); return;
+    flashStatus("Marque o início e fim do sinal primeiro.", "error");
+    return;
   }
 
-  const curSeg = segments[currentSegIdx];
-  const segId  = curSeg ? curSeg.id : `${currentVideoId}_${Math.round(tStart * 10)}`;
+  const valid      = document.querySelector('[name="valid"]:checked')?.value;
+  const label      = document.getElementById("sign-label").value;
+  const outroName  = document.getElementById("outro-name").value.trim();
+  const confidence = document.querySelector('[name="confidence"]:checked')?.value;
 
   const ann = {
-    seg_id:      segId,
+    seg_id:      `${currentVideoId}_${Math.round(tStart*10)}`,
     annotator,
     ts:          Date.now(),
     video_id:    currentVideoId,
@@ -238,41 +159,37 @@ async function submitAnnotation() {
     t_start:     tStart,
     t_end:       tEnd,
     duration:    parseFloat((tEnd - tStart).toFixed(2)),
-    valid:       document.querySelector('[name="valid"]:checked')?.value,
-    label:       document.getElementById("sign-label").value || null,
-    outro_name:  document.getElementById("outro-name").value.trim() || null,
-    confidence:  parseInt(document.querySelector('[name="confidence"]:checked')?.value),
-    handshape:   document.getElementById("handshape").value.trim()   || null,
-    location:    document.getElementById("location").value.trim()    || null,
-    movement:    document.getElementById("movement").value.trim()    || null,
-    orientation: document.getElementById("orientation").value.trim() || null,
-    facial:      document.getElementById("facial").value.trim()      || null,
-    notes:       document.getElementById("notes").value.trim()       || null,
+    valid,
+    label:       label || null,
+    outro_name:  outroName || null,
+    confidence:  parseInt(confidence),
+    handshape:   document.getElementById("handshape").value.trim()    || null,
+    location:    document.getElementById("location").value.trim()     || null,
+    movement:    document.getElementById("movement").value.trim()     || null,
+    orientation: document.getElementById("orientation").value.trim()  || null,
+    facial:      document.getElementById("facial").value.trim()       || null,
+    notes:       document.getElementById("notes").value.trim()        || null,
   };
 
+  // Salva localmente (IndexedDB) — funciona offline
   await saveAnnotation(ann);
+
+  // Salva remotamente (Supabase) — para agregar dados de todos os voluntários
   const synced = await saveToSupabase(ann);
-  annotatedIds.add(segId);
   sessionAnns.unshift({ ...ann, synced });
   updateSessionList();
 
   const total = await countAnnotations();
   document.getElementById("stat-done").textContent = `${total} anotações`;
-  flashStatus(synced ? "✓ Salvo e sincronizado!" : "✓ Salvo localmente.");
 
+  flashStatus(synced ? "✓ Salvo e sincronizado!" : "✓ Salvo localmente (offline).");
+
+  // Limpa tempos e form para próxima anotação
   clearTimes();
   resetForm();
-  updateSegNavUI();
-
-  // Avança automaticamente para o próximo não anotado
-  if (segments.length) {
-    let next = currentSegIdx + 1;
-    while (next < segments.length && annotatedIds.has(segments[next].id)) next++;
-    if (next < segments.length) setTimeout(() => loadSegment(next), 400);
-  }
 }
 
-// ── Lista da sessão ───────────────────────────────────────────
+// ── Lista de segmentos da sessão ──────────────────────────────
 function updateSessionList() {
   const wrap = document.getElementById("session-segs");
   const list = document.getElementById("segs-list");
@@ -280,7 +197,7 @@ function updateSessionList() {
   wrap.style.display = "block";
 
   list.innerHTML = sessionAnns.slice(0, 10).map(a => `
-    <div class="seg-item">
+    <div class="seg-item" data-start="${a.t_start}" data-end="${a.t_end}">
       <span class="seg-item-time">${formatTime(a.t_start)} – ${formatTime(a.t_end)}</span>
       <span class="seg-item-label ${a.label ? '' : 'no-label'}">${a.label || a.outro_name || '?'}</span>
       <span class="seg-item-dur">${a.duration}s</span>
@@ -289,16 +206,17 @@ function updateSessionList() {
     </div>
   `).join("");
 
+  // Replay de segmento salvo
   list.querySelectorAll(".btn-play-seg").forEach((btn, i) => {
     btn.addEventListener("click", () => {
       const a = sessionAnns[i];
       if (!ytPlayer) return;
-      if (currentVideoId !== a.video_id) {
-        currentVideoId = a.video_id;
+      const vid = document.getElementById("yt-url-input").value;
+      const id  = extractYtId(vid);
+      if (id !== a.video_id)
         ytPlayer.loadVideoById({ videoId: a.video_id, startSeconds: a.t_start });
-      } else {
+      else
         ytPlayer.seekTo(a.t_start, true);
-      }
       ytPlayer.playVideo();
     });
   });
@@ -308,9 +226,15 @@ function updateSessionList() {
 function resetForm() {
   document.querySelector('[name="valid"][value="yes"]').checked    = true;
   document.querySelector('[name="confidence"][value="2"]').checked = true;
-  ["sign-label","outro-name","handshape","location","movement","orientation","facial","notes"]
-    .forEach(id => { document.getElementById(id).value = ""; });
+  document.getElementById("sign-label").value   = "";
+  document.getElementById("outro-name").value   = "";
   document.getElementById("field-outro").style.display = "none";
+  document.getElementById("handshape").value    = "";
+  document.getElementById("location").value     = "";
+  document.getElementById("movement").value     = "";
+  document.getElementById("orientation").value  = "";
+  document.getElementById("facial").value       = "";
+  document.getElementById("notes").value        = "";
 }
 
 // ── Export ────────────────────────────────────────────────────
@@ -338,34 +262,36 @@ function flashStatus(msg, type = "ok") {
 
 // ── Init ──────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
+  // Modal de boas-vindas
   document.getElementById("modal-welcome").style.display = "flex";
   document.getElementById("btn-start").addEventListener("click", () => {
     annotator = document.getElementById("annotator-name").value.trim() || "anon";
     document.getElementById("modal-welcome").style.display = "none";
-    initSegmentQueue();
   });
 
+  // Carregar vídeo
   document.getElementById("btn-load-video").addEventListener("click", loadVideo);
   document.getElementById("yt-url-input").addEventListener("keydown", e => {
     if (e.key === "Enter") loadVideo();
   });
 
+  // Marcação
   document.getElementById("btn-mark-start").addEventListener("click", markStart);
   document.getElementById("btn-mark-end").addEventListener("click",   markEnd);
   document.getElementById("btn-preview").addEventListener("click",    previewSegment);
   document.getElementById("btn-clear-times").addEventListener("click", clearTimes);
 
-  document.getElementById("btn-seg-prev").addEventListener("click", segPrev);
-  document.getElementById("btn-seg-next").addEventListener("click", segNext);
-
+  // Formulário
   document.getElementById("btn-submit").addEventListener("click", submitAnnotation);
   document.getElementById("sign-label").addEventListener("change", e => {
     document.getElementById("field-outro").style.display =
       e.target.value === "outro" ? "flex" : "none";
   });
 
+  // Export
   document.getElementById("btn-export").addEventListener("click", exportData);
 
+  // Contador inicial
   countAnnotations().then(n => {
     document.getElementById("stat-done").textContent = `${n} anotações`;
   });
