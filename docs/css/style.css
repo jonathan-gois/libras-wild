@@ -607,3 +607,26 @@ main {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── Navegação de segmentos ───────────────────────────────── */
+.seg-nav {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.seg-nav.seg-done { border-color: var(--green); }
+.seg-nav-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.seg-id-label  { font-family: monospace; color: var(--dgray); font-size: 12px; }
+.seg-counter   { font-weight: 700; color: var(--white); }
+.seg-annotated { color: var(--green); font-size: 12px; margin-left: auto; }
+.seg-nav-btns  { display: flex; gap: 8px; align-items: center; }
