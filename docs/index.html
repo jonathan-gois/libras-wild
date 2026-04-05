@@ -12,75 +12,86 @@
 <header>
   <div class="header-left">
     <span class="logo">🤟 Libras Wild</span>
-    <span class="subtitle">Validação de sinais capturados em vídeo real</span>
+    <span class="subtitle">Anotação de sinais em vídeos reais</span>
   </div>
   <div class="header-right">
-    <span class="stat" id="stat-done">0 anotados</span>
-    <span class="stat" id="stat-total">— / —</span>
+    <span class="stat" id="stat-done">0 anotações</span>
     <button class="btn btn-outline" id="btn-export">⬇ Exportar JSON</button>
   </div>
 </header>
 
-<!-- ── Progress bar ──────────────────────────────────────── -->
-<div class="progress-wrap">
-  <div class="progress-bar" id="progress-bar" style="width:0%"></div>
-</div>
-
 <!-- ── Main layout ───────────────────────────────────────── -->
 <main>
 
-  <!-- Coluna esquerda: vídeo + skeleton -->
+  <!-- Coluna esquerda: vídeo + controles de tempo -->
   <section class="col-media">
 
-    <div class="media-header">
-      <span id="seg-id" class="seg-badge">seg_0000</span>
-      <span id="seg-time" class="seg-time">0.0s – 0.0s</span>
-      <span id="seg-dur" class="seg-dur"></span>
+    <!-- Input de URL -->
+    <div class="url-bar" id="url-bar">
+      <input type="text" id="yt-url-input"
+             placeholder="Cole aqui o link do YouTube (ex: https://youtu.be/abc123)"/>
+      <button class="btn btn-success" id="btn-load-video">Carregar →</button>
     </div>
 
+    <!-- Player -->
     <div class="video-wrap" id="video-wrap">
       <div id="yt-player"></div>
-      <canvas id="skeleton-canvas"></canvas>
-      <div class="video-controls">
-        <button class="btn-icon" id="btn-replay" title="Replay">↺</button>
-        <span id="play-count" class="play-count"></span>
+      <div class="video-placeholder" id="video-placeholder">
+        <span>👆 Cole um link do YouTube acima para começar</span>
       </div>
     </div>
 
-    <div class="skeleton-ctrl">
-      <label class="toggle">
-        <input type="checkbox" id="show-skeleton" checked/>
-        <span>Mostrar esqueleto</span>
-      </label>
-      <label class="toggle">
-        <input type="checkbox" id="show-hands" checked/>
-        <span>Destacar mãos</span>
-      </label>
-      <span id="frame-display" class="frame-display">frame 0/0</span>
+    <!-- Controles de marcação de tempo -->
+    <div class="time-controls" id="time-controls" style="display:none">
+
+      <div class="time-row">
+        <div class="time-block">
+          <label>Início</label>
+          <div class="time-input-group">
+            <input type="text" id="t-start" class="time-input" placeholder="0.0" readonly/>
+            <button class="btn btn-mark" id="btn-mark-start">⏺ Marcar</button>
+          </div>
+        </div>
+        <div class="time-sep">→</div>
+        <div class="time-block">
+          <label>Fim</label>
+          <div class="time-input-group">
+            <input type="text" id="t-end" class="time-input" placeholder="0.0" readonly/>
+            <button class="btn btn-mark" id="btn-mark-end">⏺ Marcar</button>
+          </div>
+        </div>
+        <div class="time-block">
+          <label>Duração</label>
+          <div class="time-dur" id="time-dur">—</div>
+        </div>
+      </div>
+
+      <div class="time-actions">
+        <button class="btn btn-secondary" id="btn-preview">▶ Preview do trecho</button>
+        <button class="btn btn-secondary" id="btn-clear-times">✕ Limpar</button>
+      </div>
+
+      <div class="time-hint" id="time-hint">
+        Toque <strong>▶ no vídeo</strong>, depois clique <strong>⏺ Marcar</strong> no momento certo.
+      </div>
+
     </div>
 
-    <!-- Predição do modelo -->
-    <div class="prediction-box">
-      <div class="pred-header">Predição do modelo (ET-1000)</div>
-      <div class="pred-list" id="pred-list"></div>
-    </div>
-
-    <!-- Navegação -->
-    <div class="nav-row">
-      <button class="btn btn-secondary" id="btn-prev">← Anterior</button>
-      <span id="nav-counter">1 / 494</span>
-      <button class="btn btn-secondary" id="btn-skip">Pular →</button>
+    <!-- Segmentos já anotados neste vídeo -->
+    <div id="session-segs" style="display:none">
+      <div class="segs-header">Anotações desta sessão</div>
+      <div id="segs-list" class="segs-list"></div>
     </div>
 
   </section>
 
-  <!-- Coluna direita: formulário -->
+  <!-- Coluna direita: formulário de anotação -->
   <section class="col-form">
 
-    <h2 class="form-title">Anotação</h2>
+    <h2 class="form-title">Anotação do Trecho</h2>
 
     <div class="field">
-      <label>Este clipe contém um sinal válido de Libras?</label>
+      <label>Este trecho contém um sinal válido de Libras?</label>
       <div class="radio-group" id="is-valid">
         <label class="radio-opt"><input type="radio" name="valid" value="yes" checked/> Sim</label>
         <label class="radio-opt"><input type="radio" name="valid" value="no"/> Não / ruído</label>
@@ -88,8 +99,8 @@
       </div>
     </div>
 
-    <div class="field" id="field-label">
-      <label>Qual sinal? <span class="hint">(pode diferir da predição)</span></label>
+    <div class="field">
+      <label>Qual sinal? <span class="hint">(selecione ou descreva)</span></label>
       <select id="sign-label">
         <option value="">— selecione —</option>
         <optgroup label="Classes conhecidas">
@@ -115,14 +126,14 @@
           <option value="vontade">vontade</option>
         </optgroup>
         <optgroup label="Fora do vocabulário">
-          <option value="outro">Outro sinal (descrever abaixo)</option>
+          <option value="outro">Outro (descrever abaixo)</option>
           <option value="desconhecido">Não sei identificar</option>
         </optgroup>
       </select>
     </div>
 
     <div class="field" id="field-outro" style="display:none">
-      <label>Nome do sinal (se souber)</label>
+      <label>Nome do sinal</label>
       <input type="text" id="outro-name" placeholder="ex: escola, trabalho, família…"/>
     </div>
 
@@ -139,37 +150,45 @@
     <h3 class="section-title">Parâmetros Fonológicos <span class="hint">(opcional)</span></h3>
 
     <div class="field">
-      <label>Configuração da mão dominante (CM)</label>
-      <input type="text" id="handshape" placeholder="ex: punho fechado, mão-B, dedo indicador estendido…"/>
+      <label>Configuração da mão (CM)</label>
+      <input type="text" id="handshape"
+             placeholder="ex: punho fechado, mão-B, dedo indicador estendido…"/>
     </div>
 
     <div class="field">
       <label>Ponto de articulação (PA)</label>
-      <input type="text" id="location" placeholder="ex: frente ao peito, altura da cabeça, espaço neutro…"/>
+      <input type="text" id="location"
+             placeholder="ex: frente ao peito, altura da cabeça, espaço neutro…"/>
     </div>
 
     <div class="field">
       <label>Movimento (MOV)</label>
-      <input type="text" id="movement" placeholder="ex: extensão frontal, circular, batida, sem movimento…"/>
+      <input type="text" id="movement"
+             placeholder="ex: extensão frontal, circular, batida, sem movimento…"/>
     </div>
 
     <div class="field">
       <label>Orientação da palma (OR)</label>
-      <input type="text" id="orientation" placeholder="ex: para frente, para baixo, para o corpo…"/>
+      <input type="text" id="orientation"
+             placeholder="ex: para frente, para baixo, para o corpo…"/>
     </div>
 
     <div class="field">
       <label>Expressão facial (ENM)</label>
-      <input type="text" id="facial" placeholder="ex: neutro, sobrancelhas levantadas, bochechas infladas…"/>
+      <input type="text" id="facial"
+             placeholder="ex: neutro, sobrancelhas levantadas, bochechas infladas…"/>
     </div>
 
     <div class="field">
       <label>Observações</label>
-      <textarea id="notes" rows="2" placeholder="Qualquer detalhe relevante…"></textarea>
+      <textarea id="notes" rows="2"
+                placeholder="Qualquer detalhe relevante sobre o sinal…"></textarea>
     </div>
 
     <div class="form-actions">
-      <button class="btn btn-success" id="btn-submit">✓ Salvar &amp; Próximo</button>
+      <button class="btn btn-success" id="btn-submit" disabled>
+        ✓ Salvar Anotação
+      </button>
     </div>
 
     <div class="annotation-status" id="ann-status"></div>
@@ -181,40 +200,24 @@
 <!-- ── Modal de boas-vindas ───────────────────────────────── -->
 <div class="modal-overlay" id="modal-welcome">
   <div class="modal">
-    <h2>🤟 Bem-vindo(a) ao Libras Wild</h2>
-    <p>Esta ferramenta exibe <strong>clipes de sinais</strong> capturados automaticamente
-       de vídeos reais de Libras. Sua tarefa é <strong>validar e anotar</strong> cada sinal.</p>
+    <h2>🤟 Libras Wild</h2>
+    <p>Ferramenta para anotar sinais de Libras em <strong>qualquer vídeo do YouTube</strong>.</p>
     <ul>
-      <li>▸ Assista ao clipe (ele toca automaticamente)</li>
-      <li>▸ Indique se é um sinal válido</li>
-      <li>▸ Confirme ou corrija o rótulo</li>
-      <li>▸ Preencha os parâmetros fonológicos se souber</li>
-      <li>▸ Clique <strong>Salvar &amp; Próximo</strong></li>
+      <li>▸ Cole o link de um vídeo em Libras</li>
+      <li>▸ Assista e marque o início e fim de cada sinal</li>
+      <li>▸ Preencha o rótulo e os parâmetros fonológicos</li>
+      <li>▸ Exporte o JSON para contribuir com o dataset</li>
     </ul>
-    <p class="modal-hint">Suas anotações ficam salvas localmente. Use <strong>Exportar JSON</strong>
-       para compartilhar com o projeto.</p>
     <div class="field">
-      <label>Seu nome / identificador <span class="hint">(para rastreamento)</span></label>
-      <input type="text" id="annotator-name" placeholder="ex: João Silva ou joao42"/>
+      <label>Seu nome / identificador</label>
+      <input type="text" id="annotator-name" placeholder="ex: João Silva"/>
     </div>
     <button class="btn btn-success btn-large" id="btn-start">Começar →</button>
   </div>
 </div>
 
-<!-- ── Modal de fim ───────────────────────────────────────── -->
-<div class="modal-overlay" id="modal-done" style="display:none">
-  <div class="modal">
-    <h2>🎉 Sessão concluída!</h2>
-    <p id="done-msg"></p>
-    <button class="btn btn-success" id="btn-export-done">⬇ Exportar anotações (JSON)</button>
-    <button class="btn btn-secondary" id="btn-restart">↺ Reanota skips</button>
-  </div>
-</div>
-
-<!-- YouTube IFrame API -->
 <script src="https://www.youtube.com/iframe_api"></script>
 <script src="js/db.js"></script>
-<script src="js/skeleton.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
