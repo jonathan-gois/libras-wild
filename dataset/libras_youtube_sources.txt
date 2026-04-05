@@ -1,0 +1,20 @@
+# Fontes YouTube para base Libras Wild
+# Formato: URL  # descrição
+# Critérios: vídeos com pelo menos uma pessoa sinalizando em Libras, boa iluminação,
+#            câmera estática ou semi-estática, falante centralizado no quadro.
+
+# ── Canal INES (Instituto Nacional de Educação de Surdos) ────────────────────
+https://www.youtube.com/watch?v=-ZDkdbPqUZg  # Libras cotidiano (já processado)
+
+# ── Handtalk / Comunicar em Libras ───────────────────────────────────────────
+# Vídeos institucionais com sinais isolados e diálogos curtos
+https://www.youtube.com/watch?v=pP4uMBHBRmI  # Sinais do dia a dia
+https://www.youtube.com/watch?v=O4ULFVJEkMs  # Vocabulário básico Libras
+
+# ── Professoras/Instrutores Surdos ───────────────────────────────────────────
+https://www.youtube.com/watch?v=dQw4w9WgXcQ  # placeholder — substitua por vídeos reais
+
+# ── Como encontrar mais vídeos ────────────────────────────────────────────────
+# yt-dlp "ytsearch20:Libras vocabulário" -j --flat-playlist | jq '.url'
+# yt-dlp "ytsearch20:aprender Libras sinais" -j --flat-playlist | jq '.url'
+# Filtros úteis: duração 2-15 min, publicado 2018-2024, HD
