@@ -519,8 +519,23 @@ def run_pipeline(url: str, out_base: Path = Path("results/youtube"),
     landmarks, fps = extract_landmarks_from_video(video_path)
     print(f"  MediaPipe: {time.time()-t0:.1f}s", flush=True)
 
-    # 3. Sign spotting
-    segments = detect_sign_segments(landmarks, fps)
+    # 3. Sign spotting — usa segmentador por picos/vales (v2)
+    try:
+        from sign_segmenter import segment_signs, SignSegment as SegV2
+        segs_v2 = segment_signs(landmarks, fps)
+        # Converte para SignSegment do pipeline (mantém compatibilidade)
+        segments = []
+        for s in segs_v2:
+            segments.append(SignSegment(
+                seg_id=s.seg_id, t_start=s.t_start, t_end=s.t_end,
+                duration=s.duration, frame_start=s.frame_start,
+                frame_end=s.frame_end, top5=[],
+                velocity_peak=s.energy_peak,
+            ))
+        print(f"  Segmentador v2 (picos/vales): {len(segments)} sinais", flush=True)
+    except Exception as e:
+        print(f"  Segmentador v2 falhou ({e}), usando v1...", flush=True)
+        segments = detect_sign_segments(landmarks, fps)
 
     # 4. Classificação
     model = load_classifier()
