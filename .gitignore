@@ -1,0 +1,12 @@
+env/
+__pycache__/
+*.pyc
+*.pyo
+data/processed_data*.pkl
+data/videos_zenodo/
+results/youtube/-ZDkdbPqUZg/*.mp4
+results/youtube/-ZDkdbPqUZg/landmarks.pkl
+*.tmp
+*.log
+=4.45.0
+refs
