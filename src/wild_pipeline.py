@@ -34,9 +34,9 @@ from sign_segmenter import segment_signs, SignSegment
 from sign_spotter   import load_spotter, filter_segments
 
 # ── Config padrão ─────────────────────────────────────────────────────────────
-SPOTTER_THRESHOLD = 0.55   # P(sinal válido) mínimo
-MIN_DUR  = 0.3             # s
-MAX_DUR  = 4.0             # s
+SPOTTER_THRESHOLD = 0.50   # P(sinal válido) mínimo
+MIN_DUR  = 0.25            # s — alinhado com novo segmentador
+MAX_DUR  = 1.8             # s — 1 sinal = max 1.8s
 FPS_DEFAULT = 30.0
 
 # ── Helpers ───────────────────────────────────────────────────────────────────

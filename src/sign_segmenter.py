@@ -100,81 +100,77 @@ def compute_energy(landmarks: np.ndarray, fps: float,
 def segment_signs(landmarks: np.ndarray,
                   fps: float,
                   # Suavização
-                  smooth_sigma_s: float   = 0.15,   # sigma para picos (fino)
-                  envelope_sigma_s: float = 0.8,    # sigma para envoltória (grosso)
+                  smooth_sigma_s: float      = 0.08,  # sigma fino para picos
                   # Critérios de pico
-                  min_peak_height: float  = 0.20,   # fração do máximo global
-                  min_peak_dist_s: float  = 0.35,   # distância mínima entre picos (s)
-                  min_peak_prominence: float = 0.10,# proeminência mínima do pico
+                  min_peak_height: float     = 0.25,  # fração do máximo global
+                  min_peak_dist_s: float     = 0.25,  # distância mínima entre picos (s)
+                  min_peak_prominence: float = 0.15,  # proeminência mínima
+                  # Janela centrada no pico
+                  half_win_s: float          = 0.55,  # meio-janela máx ao redor do pico (s)
+                  energy_drop: float         = 0.20,  # para de expandir quando energia < drop * pico
                   # Critérios de segmento
-                  min_dur_s: float        = 0.25,   # duração mínima do sinal (s)
-                  max_dur_s: float        = 3.5,    # duração máxima (s)
-                  context_pad_s: float    = 0.05,   # padding de contexto (s)
-                  min_energy_mean: float  = 0.05,   # descarta segmentos com pouco movimento
+                  min_dur_s: float           = 0.25,  # duração mínima (s)
+                  max_dur_s: float           = 1.8,   # duração máxima — 1 sinal tem ~0.5-1.5s
+                  min_energy_mean: float     = 0.06,
                   ) -> list[SignSegment]:
     """
-    Detecta sinais individuais em fluxo contínuo de Libras via picos/vales.
+    Detecta sinais individuais em Libras contínuo.
 
-    Retorna lista de SignSegment ordenada por t_start.
+    Estratégia: janela adaptativa CENTRADA NO PICO de energia.
+    Expande a partir do pico enquanto energia > (energy_drop * e_pico),
+    limitando a half_win_s em cada direção. Garante clips de 0.3-1.8s
+    contendo um único sinal.
     """
     T = len(landmarks)
     energy = compute_energy(landmarks, fps, smooth_sigma_s)
 
-    # Curva suave para encontrar vales entre picos
-    envelope = gaussian_filter1d(energy, sigma=envelope_sigma_s * fps)
-
-    # ── 1. Encontra picos (centros de movimento) ──────────────────────────────
+    # ── 1. Encontra picos ──────────────────────────────────────────────────────
     min_dist_f = max(1, int(min_peak_dist_s * fps))
-    peaks, props = find_peaks(
+    peaks, _ = find_peaks(
         energy,
-        height      = min_peak_height,
-        distance    = min_dist_f,
-        prominence  = min_peak_prominence,
+        height     = min_peak_height,
+        distance   = min_dist_f,
+        prominence = min_peak_prominence,
     )
-
     if len(peaks) == 0:
         return []
 
-    # ── 2. Encontra vales entre picos consecutivos ─────────────────────────────
-    # Adiciona sentinelas no início e fim
-    boundaries = [0] + list(peaks) + [T - 1]
-    valley_frames = []
-    for i in range(len(boundaries) - 1):
-        left, right = boundaries[i], boundaries[i + 1]
-        if left >= right:
-            valley_frames.append(left)
-            continue
-        # Vale = mínimo da envoltória entre dois picos consecutivos
-        local_min = left + int(np.argmin(envelope[left:right + 1]))
-        valley_frames.append(local_min)
-    valley_frames.append(T - 1)
-
-    # ── 3. Constrói segmentos: cada sinal = [vale_antes, vale_depois] ─────────
-    pad_f     = int(context_pad_s * fps)
-    min_f     = int(min_dur_s * fps)
-    max_f     = int(max_dur_s * fps)
-    segments  = []
+    # ── 2. Janela adaptativa centrada em cada pico ─────────────────────────────
+    half_f = int(half_win_s * fps)
+    min_f  = int(min_dur_s  * fps)
+    max_f  = int(max_dur_s  * fps)
+    segments = []
 
     for seg_idx, peak in enumerate(peaks):
-        v_start = valley_frames[seg_idx]       # vale antes do pico
-        v_end   = valley_frames[seg_idx + 1]   # vale depois do pico
+        e_peak = float(energy[peak])
+        thresh = energy_drop * e_peak
 
-        # Ajusta para não ultrapassar vizinhos
-        fs = max(0,     v_start - pad_f)
-        fe = min(T - 1, v_end   + pad_f)
+        # Expande para a esquerda enquanto energia > thresh
+        fs = peak
+        while fs > 0 and energy[fs - 1] > thresh and (peak - fs) < half_f:
+            fs -= 1
 
+        # Expande para a direita
+        fe = peak
+        while fe < T - 1 and energy[fe + 1] > thresh and (fe - peak) < half_f:
+            fe += 1
+
+        # Limita ao tamanho máximo recentrando no pico
         dur_f = fe - fs
         if dur_f < min_f:
-            continue
+            # Estende simetricamente
+            ext = (min_f - dur_f) // 2
+            fs = max(0, fs - ext)
+            fe = min(T - 1, fe + ext)
+            dur_f = fe - fs
         if dur_f > max_f:
-            # Recentra no pico
             half = max_f // 2
-            fs   = max(0,     peak - half)
-            fe   = min(T - 1, peak + half)
+            fs = max(0,     peak - half)
+            fe = min(T - 1, peak + half)
             dur_f = fe - fs
 
         seg_energy = energy[fs:fe + 1]
-        mean_e     = float(seg_energy.mean())
+        mean_e = float(seg_energy.mean())
         if mean_e < min_energy_mean:
             continue
 
@@ -182,15 +178,15 @@ def segment_signs(landmarks: np.ndarray,
             seg_id      = f"seg_{seg_idx:04d}_{fs}",
             t_start     = fs / fps,
             t_end       = fe / fps,
-            duration    = (fe - fs) / fps,
+            duration    = dur_f / fps,
             frame_start = int(fs),
             frame_end   = int(fe),
             peak_frame  = int(peak),
-            energy_peak = float(energy[peak]),
+            energy_peak = e_peak,
             energy_mean = mean_e,
         ))
 
-    # ── 4. Remove sobreposições: se dois segmentos se sobrepõem >50%, descarta menor ─
+    # ── 3. Remove sobreposições >50% (mantém o de maior energia) ──────────────
     filtered = []
     for seg in sorted(segments, key=lambda s: s.energy_peak, reverse=True):
         overlap = False
@@ -205,8 +201,7 @@ def segment_signs(landmarks: np.ndarray,
         if not overlap:
             filtered.append(seg)
 
-    result = sorted(filtered, key=lambda s: s.t_start)
-    return result
+    return sorted(filtered, key=lambda s: s.t_start)
 
 
 def plot_segmentation(energy: np.ndarray, segments: list[SignSegment],

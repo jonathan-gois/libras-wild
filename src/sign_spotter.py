@@ -63,17 +63,19 @@ def extract_features(seq: np.ndarray) -> np.ndarray:
     for arr in [wrist_vel, hand_vel]:
         feats += [arr.mean(0), arr.max(0), arr.std(0)]
 
-    # Curva de energia: pico, vale, razão
+    # Curva de energia: pico, vale, razão (SEM duração — para ser invariante ao comprimento)
     e = total_vel
-    feats.append([e.max(), e.mean(), e.std(),
-                  e.max() / (e.mean() + 1e-9),       # proeminência do pico
-                  np.percentile(e, 10),               # energia de hold
-                  np.percentile(e, 90),               # energia de stroke
-                  float(len(e)),                      # duração em frames
-                  e[:len(e)//4].mean(),               # energia início (preparação)
-                  e[-len(e)//4:].mean(),              # energia fim (retração)
-                  e[len(e)//4: 3*len(e)//4].mean(),  # energia meio (stroke)
-                  ])
+    n = len(e)
+    q1, q2, q3, q4 = e[:n//4], e[n//4:n//2], e[n//2:3*n//4], e[3*n//4:]
+    feats.append([
+        e.max(), e.mean(), e.std(),
+        e.max() / (e.mean() + 1e-9),    # proeminência do pico
+        np.percentile(e, 10),            # energia de hold
+        np.percentile(e, 90),            # energia de stroke
+        q1.mean(), q2.mean(), q3.mean(), q4.mean(),   # perfil temporal (4 quartis)
+        q2.mean() / (q1.mean() + 1e-9), # crescimento (pré→stroke)
+        q3.mean() / (q4.mean() + 1e-9), # decaimento (stroke→pós)
+    ])
 
     # Posição média das mãos (relativa ao quadril)
     xyz = seq.reshape(len(seq), 75, 3)
@@ -88,40 +90,67 @@ def extract_features(seq: np.ndarray) -> np.ndarray:
 
 # ── Geração de negativos sintéticos ──────────────────────────────────────────
 
+def window_stroke(seq: np.ndarray, rng) -> np.ndarray:
+    """Extrai só o stroke (centro) de um clip MINDS — cria positivos curtos."""
+    T = len(seq)
+    # Calcula energia para achar o pico
+    from sign_segmenter import compute_energy
+    e = compute_energy(seq, fps=30.0)
+    peak = int(np.argmax(e))
+    # Janela aleatória de 0.4-0.9s ao redor do pico
+    half = int(rng.uniform(6, 13))  # frames (0.2-0.43s de cada lado @ 30fps)
+    fs = max(0, peak - half)
+    fe = min(T - 1, peak + half)
+    return seq[fs:fe+1]
+
+
 def make_negatives(samples: list) -> list:
     """
     Gera negativos a partir dos positivos (sinais MINDS):
-      1. Corte inicial (preparação sem stroke)
-      2. Corte final (retração sem stroke)
-      3. Hold artificialmente longo (frames repetidos)
-      4. Segmento muito curto (<25% do original)
+      1. Só preparação (sem stroke)
+      2. Só retração (sem stroke)
+      3. Hold (frames repetidos)
+      4. Dois sinais concatenados → multi-sinal (negativo para detector single-sign)
+      5. Janela aleatória fora do stroke
     """
     negs = []
     rng  = np.random.default_rng(42)
 
-    for seq in samples:
+    for i, seq in enumerate(samples):
         T = len(seq)
         if T < 8:
             continue
 
-        # 1. Só preparação: primeiros 35%
         cut = max(4, int(T * 0.35))
+
+        # 1. Só preparação
         negs.append(seq[:cut])
 
-        # 2. Só retração: últimos 35%
+        # 2. Só retração
         negs.append(seq[-cut:])
 
-        # 3. Hold: repete um frame do meio várias vezes
+        # 3. Hold
         mid = T // 2
-        hold_len = int(T * rng.uniform(0.4, 0.8))
+        hold_len = int(T * rng.uniform(0.3, 0.6))
         negs.append(np.tile(seq[mid:mid+1], (hold_len, 1)))
 
-        # 4. Corte aleatório muito curto
-        short = max(3, int(T * rng.uniform(0.1, 0.22)))
+        # 4. Multi-sinal: concatena dois sinais diferentes (crítico para wild)
+        j = (i + rng.integers(1, len(samples) // 2)) % len(samples)
+        multi = np.concatenate([samples[i], samples[j]], axis=0)
+        negs.append(multi)
+
+        # 5. Janela aleatória fora do stroke
+        short = max(4, int(T * rng.uniform(0.15, 0.30)))
         start = rng.integers(0, T - short)
         negs.append(seq[start:start + short])
 
     return negs
+
+
+def make_short_positives(samples: list) -> list:
+    """Gera positivos curtos (stroke only) para que o spotter não aprenda duração."""
+    rng = np.random.default_rng(99)
+    return [window_stroke(s, rng) for s in samples if len(s) >= 8]
 
 
 # ── Treino ────────────────────────────────────────────────────────────────────
@@ -130,13 +159,17 @@ def train(data_pkl: Path = ROOT / "data" / "processed_data.pkl"):
     print("Carregando MINDS...", flush=True)
     df = pickle.load(open(data_pkl, "rb"))
     positives = [np.array(r["landmarks"], dtype=np.float32) for _, r in df.iterrows()]
-    print(f"  {len(positives)} sinais positivos", flush=True)
+    print(f"  {len(positives)} sinais positivos (clips completos)", flush=True)
+
+    short_pos = make_short_positives(positives)
+    print(f"  {len(short_pos)} positivos curtos (stroke only)", flush=True)
 
     negatives = make_negatives(positives)
-    print(f"  {len(negatives)} negativos sintéticos gerados", flush=True)
+    print(f"  {len(negatives)} negativos sintéticos", flush=True)
 
-    X = np.stack([extract_features(s) for s in positives + negatives])
-    y = np.array([1] * len(positives) + [0] * len(negatives))
+    all_pos = positives + short_pos
+    X = np.stack([extract_features(s) for s in all_pos + negatives])
+    y = np.array([1] * len(all_pos) + [0] * len(negatives))
 
     clf = Pipeline([
         ("scaler", StandardScaler()),

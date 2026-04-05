@@ -1,0 +1,68 @@
+[
+  {
+    "seg_id": "seg_0001_387",
+    "video_id": "6LHbzIZk6rE",
+    "video_url": "https://youtu.be/6LHbzIZk6rE",
+    "t_start": 15.48,
+    "t_end": 16.12,
+    "duration": 0.64,
+    "spotter_score": 0.684,
+    "energy_peak": 0.464,
+    "clip": "6LHbzIZk6rE/clips/seg_0001_387.mp4"
+  },
+  {
+    "seg_id": "seg_0002_415",
+    "video_id": "6LHbzIZk6rE",
+    "video_url": "https://youtu.be/6LHbzIZk6rE",
+    "t_start": 16.6,
+    "t_end": 17.08,
+    "duration": 0.48,
+    "spotter_score": 0.579,
+    "energy_peak": 0.406,
+    "clip": "6LHbzIZk6rE/clips/seg_0002_415.mp4"
+  },
+  {
+    "seg_id": "seg_0011_693",
+    "video_id": "6LHbzIZk6rE",
+    "video_url": "https://youtu.be/6LHbzIZk6rE",
+    "t_start": 27.72,
+    "t_end": 28.08,
+    "duration": 0.36,
+    "spotter_score": 0.978,
+    "energy_peak": 1.0,
+    "clip": "6LHbzIZk6rE/clips/seg_0011_693.mp4"
+  },
+  {
+    "seg_id": "seg_0016_1108",
+    "video_id": "6LHbzIZk6rE",
+    "video_url": "https://youtu.be/6LHbzIZk6rE",
+    "t_start": 44.32,
+    "t_end": 44.76,
+    "duration": 0.44,
+    "spotter_score": 0.876,
+    "energy_peak": 0.36,
+    "clip": "6LHbzIZk6rE/clips/seg_0016_1108.mp4"
+  },
+  {
+    "seg_id": "seg_0017_1179",
+    "video_id": "6LHbzIZk6rE",
+    "video_url": "https://youtu.be/6LHbzIZk6rE",
+    "t_start": 47.16,
+    "t_end": 47.44,
+    "duration": 0.28,
+    "spotter_score": 0.786,
+    "energy_peak": 0.27,
+    "clip": "6LHbzIZk6rE/clips/seg_0017_1179.mp4"
+  },
+  {
+    "seg_id": "seg_0026_1405",
+    "video_id": "6LHbzIZk6rE",
+    "video_url": "https://youtu.be/6LHbzIZk6rE",
+    "t_start": 56.2,
+    "t_end": 56.64,
+    "duration": 0.44,
+    "spotter_score": 0.561,
+    "energy_peak": 0.421,
+    "clip": "6LHbzIZk6rE/clips/seg_0026_1405.mp4"
+  }
+]

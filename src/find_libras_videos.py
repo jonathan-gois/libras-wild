@@ -15,14 +15,18 @@ from pathlib import Path
 ROOT = Path(__file__).parent.parent
 
 DEFAULT_QUERIES = [
-    "Libras vocabulário sinais básicos",
-    "aprender Libras cotidiano",
-    "Libras diálogo surdo",
-    "Libras palavras do dia a dia",
-    "intérprete Libras palestra",
-    "INES Libras sinais",
-    "Libras curso básico aula",
-    "comunicação Libras surdo ouvinte",
+    # Foco: glossário/vocabulário com um sinal por vez
+    "glossário Libras sinais isolados",
+    "dicionário Libras palavra por palavra",
+    "como fazer sinal Libras vocabulário",
+    "INES TV Libras manuário glossário",
+    "Libras sinais animais cores números",
+    "aprenda sinais Libras um por um",
+    "Libras básico vocabulário apresentação",
+    "sinais Libras alimentos objetos cotidiano",
+    # Canais com boa qualidade de filmagem
+    "Handtalk Libras sinais dicionário",
+    "Libras acessibilidade SENAI SENAC sinais",
 ]
 
 
@@ -41,7 +45,8 @@ def search_yt(query: str, n: int = 20) -> list[dict]:
         try:
             info = json.loads(line)
             dur = info.get("duration") or 0
-            if 90 <= dur <= 900:   # 1.5 min a 15 min
+            # Prefere vídeos curtos (glossário: 1-8 min) — vídeos longos tendem a ser discurso
+            if 60 <= dur <= 480:   # 1 min a 8 min
                 videos.append({
                     "id":       info.get("id", ""),
                     "url":      f"https://www.youtube.com/watch?v={info.get('id','')}",

@@ -1,0 +1,211 @@
+[
+  {
+    "seg_id": "seg_0000_29",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 0.967,
+    "t_end": 1.333,
+    "duration": 0.367,
+    "spotter_score": 0.583,
+    "energy_peak": 0.395,
+    "clip": "NYSa_t1sI_Q/clips/seg_0000_29.mp4"
+  },
+  {
+    "seg_id": "seg_0002_97",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 3.233,
+    "t_end": 3.533,
+    "duration": 0.3,
+    "spotter_score": 0.781,
+    "energy_peak": 0.373,
+    "clip": "NYSa_t1sI_Q/clips/seg_0002_97.mp4"
+  },
+  {
+    "seg_id": "seg_0006_526",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 17.533,
+    "t_end": 18.067,
+    "duration": 0.533,
+    "spotter_score": 0.713,
+    "energy_peak": 0.441,
+    "clip": "NYSa_t1sI_Q/clips/seg_0006_526.mp4"
+  },
+  {
+    "seg_id": "seg_0009_770",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 25.667,
+    "t_end": 25.967,
+    "duration": 0.3,
+    "spotter_score": 0.879,
+    "energy_peak": 0.364,
+    "clip": "NYSa_t1sI_Q/clips/seg_0009_770.mp4"
+  },
+  {
+    "seg_id": "seg_0011_1020",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 34.0,
+    "t_end": 34.467,
+    "duration": 0.467,
+    "spotter_score": 0.958,
+    "energy_peak": 0.615,
+    "clip": "NYSa_t1sI_Q/clips/seg_0011_1020.mp4"
+  },
+  {
+    "seg_id": "seg_0012_1179",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 39.3,
+    "t_end": 39.633,
+    "duration": 0.333,
+    "spotter_score": 0.7,
+    "energy_peak": 0.712,
+    "clip": "NYSa_t1sI_Q/clips/seg_0012_1179.mp4"
+  },
+  {
+    "seg_id": "seg_0014_1236",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 41.2,
+    "t_end": 41.667,
+    "duration": 0.467,
+    "spotter_score": 0.821,
+    "energy_peak": 0.559,
+    "clip": "NYSa_t1sI_Q/clips/seg_0014_1236.mp4"
+  },
+  {
+    "seg_id": "seg_0015_1425",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 47.5,
+    "t_end": 47.867,
+    "duration": 0.367,
+    "spotter_score": 0.725,
+    "energy_peak": 0.714,
+    "clip": "NYSa_t1sI_Q/clips/seg_0015_1425.mp4"
+  },
+  {
+    "seg_id": "seg_0016_1478",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 49.267,
+    "t_end": 49.667,
+    "duration": 0.4,
+    "spotter_score": 0.603,
+    "energy_peak": 0.339,
+    "clip": "NYSa_t1sI_Q/clips/seg_0016_1478.mp4"
+  },
+  {
+    "seg_id": "seg_0019_1884",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 62.8,
+    "t_end": 63.433,
+    "duration": 0.633,
+    "spotter_score": 0.715,
+    "energy_peak": 1.0,
+    "clip": "NYSa_t1sI_Q/clips/seg_0019_1884.mp4"
+  },
+  {
+    "seg_id": "seg_0020_1934",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 64.467,
+    "t_end": 64.9,
+    "duration": 0.433,
+    "spotter_score": 0.803,
+    "energy_peak": 0.629,
+    "clip": "NYSa_t1sI_Q/clips/seg_0020_1934.mp4"
+  },
+  {
+    "seg_id": "seg_0022_2163",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 72.1,
+    "t_end": 72.6,
+    "duration": 0.5,
+    "spotter_score": 0.669,
+    "energy_peak": 0.357,
+    "clip": "NYSa_t1sI_Q/clips/seg_0022_2163.mp4"
+  },
+  {
+    "seg_id": "seg_0028_2635",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 87.833,
+    "t_end": 88.3,
+    "duration": 0.467,
+    "spotter_score": 0.687,
+    "energy_peak": 0.407,
+    "clip": "NYSa_t1sI_Q/clips/seg_0028_2635.mp4"
+  },
+  {
+    "seg_id": "seg_0030_2743",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 91.433,
+    "t_end": 91.733,
+    "duration": 0.3,
+    "spotter_score": 0.864,
+    "energy_peak": 0.34,
+    "clip": "NYSa_t1sI_Q/clips/seg_0030_2743.mp4"
+  },
+  {
+    "seg_id": "seg_0032_2757",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 91.9,
+    "t_end": 92.5,
+    "duration": 0.6,
+    "spotter_score": 0.545,
+    "energy_peak": 0.336,
+    "clip": "NYSa_t1sI_Q/clips/seg_0032_2757.mp4"
+  },
+  {
+    "seg_id": "seg_0034_2806",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 93.533,
+    "t_end": 94.0,
+    "duration": 0.467,
+    "spotter_score": 0.95,
+    "energy_peak": 0.395,
+    "clip": "NYSa_t1sI_Q/clips/seg_0034_2806.mp4"
+  },
+  {
+    "seg_id": "seg_0035_2836",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 94.533,
+    "t_end": 94.867,
+    "duration": 0.333,
+    "spotter_score": 0.942,
+    "energy_peak": 0.505,
+    "clip": "NYSa_t1sI_Q/clips/seg_0035_2836.mp4"
+  },
+  {
+    "seg_id": "seg_0036_2873",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 95.767,
+    "t_end": 96.067,
+    "duration": 0.3,
+    "spotter_score": 0.853,
+    "energy_peak": 0.415,
+    "clip": "NYSa_t1sI_Q/clips/seg_0036_2873.mp4"
+  },
+  {
+    "seg_id": "seg_0037_3060",
+    "video_id": "NYSa_t1sI_Q",
+    "video_url": "https://youtu.be/NYSa_t1sI_Q",
+    "t_start": 102.0,
+    "t_end": 102.3,
+    "duration": 0.3,
+    "spotter_score": 0.92,
+    "energy_peak": 0.356,
+    "clip": "NYSa_t1sI_Q/clips/seg_0037_3060.mp4"
+  }
+]
