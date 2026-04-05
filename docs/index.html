@@ -26,6 +26,20 @@
   <!-- Coluna esquerda: vídeo + controles de tempo -->
   <section class="col-media">
 
+    <!-- Fila de segmentos Wild -->
+    <div id="queue-nav" style="display:none" class="queue-nav">
+      <div class="q-info">
+        <span id="q-counter" class="q-counter"></span>
+        <span id="q-done" class="q-done"></span>
+      </div>
+      <div class="q-vid-label" id="q-vid"></div>
+      <div class="q-btns">
+        <button class="btn btn-secondary" id="btn-q-prev" disabled>← Anterior</button>
+        <button class="btn btn-mark" onclick="previewSegment()">▶ Preview</button>
+        <button class="btn btn-secondary" id="btn-q-next">Próximo →</button>
+      </div>
+    </div>
+
     <!-- Input de URL -->
     <div class="url-bar" id="url-bar">
       <input type="text" id="yt-url-input"

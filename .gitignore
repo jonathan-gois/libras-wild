@@ -1,12 +1,12 @@
-env/
+# Vídeos e clipes
+dataset/wild/*/clips/
+dataset/wild/*/*.mp4
+dataset/wild/*/*.pkl
+!dataset/wild/*/meta.json
+!dataset/wild/index.json
+# Python
 __pycache__/
 *.pyc
-*.pyo
-data/processed_data*.pkl
-data/videos_zenodo/
-results/youtube/-ZDkdbPqUZg/*.mp4
-results/youtube/-ZDkdbPqUZg/landmarks.pkl
-*.tmp
+env/
 *.log
-=4.45.0
-refs
+nohup.out

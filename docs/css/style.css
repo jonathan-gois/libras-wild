@@ -607,3 +607,22 @@ main {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── Fila Wild ────────────────────────────────────────────── */
+.queue-nav {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.queue-nav.done { border-color: var(--green); }
+.q-info { display: flex; justify-content: space-between; align-items: center; }
+.q-counter { font-weight: 700; font-size: 15px; }
+.q-done    { color: var(--green); font-size: 12px; }
+.q-vid-label { font-family: monospace; font-size: 11px; color: var(--dgray);
+               white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.q-btns { display: flex; gap: 8px; }
