@@ -171,14 +171,18 @@ async function submitAnnotation() {
     notes:       document.getElementById("notes").value.trim()        || null,
   };
 
+  // Salva localmente (IndexedDB) — funciona offline
   await saveAnnotation(ann);
-  sessionAnns.unshift(ann);
+
+  // Salva remotamente (Supabase) — para agregar dados de todos os voluntários
+  const synced = await saveToSupabase(ann);
+  sessionAnns.unshift({ ...ann, synced });
   updateSessionList();
 
   const total = await countAnnotations();
   document.getElementById("stat-done").textContent = `${total} anotações`;
 
-  flashStatus("✓ Salvo! Marque o próximo trecho.");
+  flashStatus(synced ? "✓ Salvo e sincronizado!" : "✓ Salvo localmente (offline).");
 
   // Limpa tempos e form para próxima anotação
   clearTimes();
@@ -197,6 +201,7 @@ function updateSessionList() {
       <span class="seg-item-time">${formatTime(a.t_start)} – ${formatTime(a.t_end)}</span>
       <span class="seg-item-label ${a.label ? '' : 'no-label'}">${a.label || a.outro_name || '?'}</span>
       <span class="seg-item-dur">${a.duration}s</span>
+      <span title="${a.synced ? 'Sincronizado' : 'Apenas local'}">${a.synced ? '☁' : '💾'}</span>
       <button class="btn-play-seg" title="Replay">▶</button>
     </div>
   `).join("");
