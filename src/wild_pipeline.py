@@ -123,6 +123,50 @@ def extract_landmarks(video_path: Path) -> tuple[np.ndarray, float]:
     return np.array(frames, dtype=np.float32), fps
 
 
+def check_signer_present(video_path: Path,
+                          sample_every_s: float = 1.5,
+                          min_hand_ratio: float = 0.20) -> tuple[bool, float]:
+    """
+    Pré-checagem rápida: há um sinalizador no vídeo?
+
+    Amostra 1 frame a cada sample_every_s segundos e verifica se o MediaPipe
+    detecta pelo menos uma mão. Retorna (ok, ratio_frames_com_mao).
+
+    Critério: pelo menos min_hand_ratio dos frames amostrados com mão visível.
+    Rejeita vídeos sem sinalizador (entrevistas sem LIBRAS, conteúdo off-topic).
+    """
+    cap = cv2.VideoCapture(str(video_path))
+    fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    step = max(1, int(sample_every_s * fps))
+
+    hands = mp.solutions.hands.Hands(
+        static_image_mode=True,
+        max_num_hands=2,
+        min_detection_confidence=0.5,
+    )
+
+    sampled, with_hand = 0, 0
+    frame_idx = 0
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        if frame_idx % step == 0:
+            rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            res = hands.process(rgb)
+            sampled += 1
+            if res.multi_hand_landmarks:
+                with_hand += 1
+        frame_idx += 1
+
+    cap.release()
+    hands.close()
+
+    ratio = with_hand / max(sampled, 1)
+    return ratio >= min_hand_ratio, ratio
+
+
 def cut_clip(video_path: Path, t_start: float, t_end: float,
              out_path: Path) -> bool:
     """Corta clipe com ffmpeg. Retorna True se ok."""
@@ -161,7 +205,25 @@ def process_video(url: str, out_root: Path, clf,
     else:
         print(f"  Já baixado: {video_file.name}", flush=True)
 
-    # 2. Landmarks (cache)
+    # 2. Pré-checagem: há sinalizador no vídeo?
+    check_file = vid_dir / "signer_check.json"
+    if check_file.exists():
+        check_data = json.load(open(check_file))
+        if not check_data["ok"]:
+            print(f"  [SKIP] Sem sinalizador (ratio={check_data['ratio']:.2f})", flush=True)
+            if not (vid_dir / "landmarks.pkl").exists():
+                video_file.unlink(missing_ok=True)
+            return []
+    else:
+        print("  Verificando presença de sinalizador...", flush=True)
+        ok, ratio = check_signer_present(video_file)
+        check_file.write_text(json.dumps({"ok": ok, "ratio": round(ratio, 3)}))
+        print(f"  Sinalizador: {'✓' if ok else '✗'}  mãos em {ratio*100:.0f}% dos frames", flush=True)
+        if not ok:
+            video_file.unlink(missing_ok=True)
+            return []
+
+    # 3. Landmarks (cache)
     lm_path = vid_dir / "landmarks.pkl"
     if lm_path.exists():
         print("  Landmarks em cache.", flush=True)
