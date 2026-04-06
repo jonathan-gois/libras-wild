@@ -1,28 +1,26 @@
 /**
  * app.js — Libras Wild: anotação de sinais segmentados automaticamente.
  *
- * Fluxo:
- *  1. Carrega data/wild_index.json (686 clipes de 15 vídeos)
- *  2. Para cada clipe: carrega o vídeo YouTube certo, salta para t_start/t_end
- *  3. Preview automático + pausa no t_end
- *  4. Usuário anota → salva IndexedDB + Supabase → avança automaticamente
- *  5. Exporta JSON consolidado
- *
- *  Modo manual (fallback): usuário cola qualquer URL e marca tempos
+ * 4133 clipes de 50 vídeos, carregados em páginas de 200 (lazy).
+ * Para cada clipe: carrega o YouTube certo, salta para t_start/t_end,
+ * pausa no fim. Ao salvar, avança para o próximo não anotado.
+ * Fallback manual: cola URL + marca tempos.
  */
 
 // ── Estado ────────────────────────────────────────────────────
-let annotator     = "";
-let ytPlayer      = null;
-let playerReady   = false;
+let annotator      = "";
+let ytPlayer       = null;
+let playerReady    = false;
 let currentVideoId = null;
 let tStart = null, tEnd = null;
-let sessionAnns   = [];
+let sessionAnns    = [];
 
-// Fila wild
-let wildQueue    = [];     // array de {seg_id, video_id, t_start, t_end, ...}
+// Fila wild (paginada)
+let wildQueue    = [];
 let queueIdx     = 0;
 let annotatedSet = new Set();
+let manifest     = null;
+let loadedPages  = new Set();
 
 // ── YouTube IFrame API ────────────────────────────────────────
 window.onYouTubeIframeAPIReady = function () {
@@ -44,31 +42,79 @@ function autoStopAtEnd(e) {
   }, 200);
 }
 
-// ── Fila wild ─────────────────────────────────────────────────
+// ── Fila wild (lazy paginada) ──────────────────────────────────
+async function loadPage(pageNum) {
+  if (loadedPages.has(pageNum)) return;
+  const url = `data/pages/page_${String(pageNum).padStart(3,"0")}.json`;
+  try {
+    const chunk = await fetch(url).then(r => r.json());
+    // Insere na posição certa (páginas carregadas fora de ordem)
+    const offset = pageNum * manifest.page_size;
+    chunk.forEach((c, i) => { wildQueue[offset + i] = c; });
+    loadedPages.add(pageNum);
+  } catch(e) { console.warn("Erro ao carregar página", pageNum, e); }
+}
+
 async function initQueue() {
   try {
-    wildQueue = await fetch("data/wild_index.json").then(r => r.json());
+    manifest = await fetch("data/pages/manifest.json").then(r => r.json());
+    wildQueue = new Array(manifest.total);  // array esparso
+
+    // Carrega página 0 imediatamente
+    await loadPage(0);
+
     const saved = await getAllAnnotations();
     saved.forEach(a => annotatedSet.add(a.seg_id));
 
-    // Primeiro não anotado
-    let first = wildQueue.findIndex(c => !annotatedSet.has(c.seg_id));
-    if (first < 0) first = 0;
+    // Primeiro não anotado (procura na pg 0)
+    let first = 0;
+    for (let i = 0; i < Math.min(manifest.page_size, manifest.total); i++) {
+      if (wildQueue[i] && !annotatedSet.has(wildQueue[i].seg_id)) { first = i; break; }
+    }
     queueIdx = first;
 
     document.getElementById("queue-nav").style.display = "block";
     renderQueueNav();
     if (playerReady) goToClip(queueIdx);
+
+    // Pré-carrega próximas 2 páginas em background
+    for (let p = 1; p <= Math.min(2, manifest.n_pages - 1); p++) loadPage(p);
   } catch (e) {
-    console.warn("wild_index.json não disponível — modo manual.", e);
+    // Fallback: tenta arquivo único legado
+    try {
+      wildQueue = await fetch("data/wild_index.json").then(r => r.json());
+      manifest  = { total: wildQueue.length, page_size: wildQueue.length, n_pages: 1 };
+      const saved = await getAllAnnotations();
+      saved.forEach(a => annotatedSet.add(a.seg_id));
+      let first = wildQueue.findIndex(c => !annotatedSet.has(c.seg_id));
+      if (first < 0) first = 0;
+      queueIdx = first;
+      document.getElementById("queue-nav").style.display = "block";
+      renderQueueNav();
+      if (playerReady) goToClip(queueIdx);
+    } catch(e2) {
+      console.warn("Índice indisponível — modo manual.", e2);
+    }
   }
 }
 
-function goToClip(idx) {
-  if (!wildQueue.length || idx < 0 || idx >= wildQueue.length) return;
+// Garante que a página do clip idx está carregada
+async function ensurePageLoaded(idx) {
+  if (!manifest) return;
+  const page = Math.floor(idx / manifest.page_size);
+  await loadPage(page);
+  // Pré-carrega próxima
+  if (page + 1 < manifest.n_pages) loadPage(page + 1);
+}
+
+async function goToClip(idx) {
+  if (!manifest || idx < 0 || idx >= manifest.total) return;
   if (!playerReady) { queueIdx = idx; return; }
+  await ensurePageLoaded(idx);
+  if (!wildQueue[idx]) return;
   queueIdx = idx;
   const clip = wildQueue[idx];
+  if (!clip) return;
 
   // Oculta placeholder
   document.getElementById("video-placeholder").style.display = "none";
@@ -96,22 +142,23 @@ function fillTimes(clip) {
 }
 
 function renderQueueNav() {
-  if (!wildQueue.length) return;
+  if (!manifest) return;
   const clip = wildQueue[queueIdx];
+  if (!clip) return;
   const done = annotatedSet.size;
   document.getElementById("q-counter").textContent =
-    `${queueIdx + 1} / ${wildQueue.length}`;
+    `${queueIdx + 1} / ${manifest.total}`;
   document.getElementById("q-done").textContent = `${done} anotados`;
   document.getElementById("q-vid").textContent =
     `${clip.video_id}  ${formatTime(clip.t_start)}–${formatTime(clip.t_end)}` +
     `  score=${clip.spotter_score}`;
   document.getElementById("btn-q-prev").disabled = queueIdx <= 0;
-  document.getElementById("btn-q-next").disabled = queueIdx >= wildQueue.length - 1;
+  document.getElementById("btn-q-next").disabled = queueIdx >= manifest.total - 1;
   document.getElementById("queue-nav").classList.toggle(
     "done", annotatedSet.has(clip.seg_id));
 }
 
-function qNext() { if (queueIdx < wildQueue.length - 1) goToClip(queueIdx + 1); }
+function qNext() { if (manifest && queueIdx < manifest.total - 1) goToClip(queueIdx + 1); }
 function qPrev() { if (queueIdx > 0) goToClip(queueIdx - 1); }
 
 // ── Carrega vídeo manualmente ─────────────────────────────────
@@ -220,10 +267,11 @@ async function submitAnnotation() {
   clearTimes(); resetForm(); renderQueueNav();
 
   // Avança para próximo não anotado
-  if (wildQueue.length) {
+  if (manifest) {
     let next = queueIdx + 1;
-    while (next < wildQueue.length && annotatedSet.has(wildQueue[next].seg_id)) next++;
-    if (next < wildQueue.length) setTimeout(() => goToClip(next), 400);
+    // Avança até achar não anotado (dentro da página carregada)
+    while (next < manifest.total && wildQueue[next] && annotatedSet.has(wildQueue[next].seg_id)) next++;
+    if (next < manifest.total) setTimeout(() => goToClip(next), 400);
   }
 }
 

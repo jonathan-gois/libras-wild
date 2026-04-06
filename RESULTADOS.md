@@ -331,9 +331,63 @@ As três fontes de features têm papéis complementares:
 - [ ] Anotação fonológica com Qwen2-VL-7B (annotate_qwen.py) — requer vídeos Zenodo
 - [ ] v6 PhoneticFusionModel com InfoNCE + SBERT — aguardando anotações Qwen
 - [ ] Normalização adversarial por sinalizador para reduzir gap LOPO
-- [ ] Threshold de rejeição no YouTube pipeline (sinal "fora do vocabulário")
 - [ ] Vocabulário expandido: treinar com mais sinais para aplicação prática
+- [x] Pipeline Wild: aquisição + segmentação + filtro automático — **concluído: 4133 clipes**
+- [ ] Anotar clipes Wild (voluntários via site) — em andamento
+- [ ] Retraining com dados Wild para reduzir gap LOPO
 
 ---
 
-*Documento atualizado em 2026-04-02 — inclui v4 (94.62%), LOPO (74.50%), análise mirror (prejudicial), v5 ST-GCN (91.88%), pipeline YouTube*
+## Base Libras Wild
+
+### Motivação
+
+O gap de 24pp entre 10-fold (98.5%) e LOPO (74.5%) indica que o modelo depende fortemente do estilo individual do sinalizador. A base Wild — coletada de vídeos reais do YouTube com múltiplos sinalizadores desconhecidos — visa reduzir essa dependência via maior diversidade.
+
+### Pipeline de Aquisição
+
+```
+YouTube URL → yt-dlp (h264) → MediaPipe Holistic (T×225 lm) →
+sign_segmenter (picos de velocidade) → sign_spotter (P≥0.5) → clipe .mp4
+```
+
+### Segmentação por Picos de Velocidade
+
+Estratégia anterior (vale-a-vale) produzia clips de ~3.5s com múltiplos sinais. Estratégia atual: **janela adaptativa centrada no pico** de energia cinética dos pulsos e mãos.
+
+| Parâmetro | Valor |
+|---|---|
+| half_win_s | 0.55s |
+| energy_drop | 20% do pico |
+| max_dur_s | 1.8s |
+| min_peak_dist_s | 0.25s |
+
+### Filtro sign_spotter
+
+Classificador binário (Gradient Boosting, 300 árvores) treinado em:
+- **Positivos:** MINDS completos (800) + stroke-only windowed (800)
+- **Negativos:** preparação, retração, hold, multi-sinal concatenado, corte aleatório (4000 total)
+- **F1 cross-val:** 0.851 ± 0.016 (era 0.999 com feature de duração — enviesado)
+
+### Resultado
+
+| Métrica | Valor |
+|---|---|
+| Vídeos processados | 50 |
+| Clipes gerados | 4133 |
+| Duração média | 0.65s |
+| Range de duração | 0.23–1.08s |
+| Clipes ≤ 1.0s | 84% |
+| Spotter score médio | 0.850 |
+
+### Ferramenta de Anotação
+
+Site GitHub Pages: **https://jonathan-gois.github.io/libras-wild/**
+- Carrega os 4133 clipes paginados (200 por vez)
+- Para cada clipe: carrega o YouTube no timestamp certo, preview automático
+- Anota: rótulo, confiança, CM/PA/MOV/OR/ENM
+- Sincroniza com Supabase (coleta distribuída de voluntários)
+
+---
+
+*Documento atualizado em 2026-04-05 — inclui v4 (94.62%), LOPO (74.50%), v5 ST-GCN (91.88%), pipeline Wild (4133 clipes, 0.65s médio)*
