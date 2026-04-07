@@ -5,36 +5,7 @@ capturada em vídeos reais ("in the wild").
 
 ## 🌐 Ferramenta de Anotação Online
 
-**→ [Acessar ferramenta](https://SEU-USUARIO.github.io/libras-wild)**
-
 494 segmentos de sinais detectados automaticamente aguardam validação.
-
----
-
-## Como publicar no GitHub Pages (uma vez)
-
-```bash
-# 1. Crie o repositório no GitHub (público, nome: libras-wild)
-#    https://github.com/new
-
-# 2. No terminal da máquina local:
-sudo apt install git        # se necessário
-cd /home/jonathangois/Documentos/Libras_2026
-git init
-git add .
-git commit -m "feat: ferramenta de anotacao Libras Wild"
-git branch -M main
-git remote add origin https://github.com/SEU-USUARIO/libras-wild.git
-git push -u origin main
-
-# 3. Ative GitHub Pages:
-#    Repositório → Settings → Pages → Source: GitHub Actions
-#    O workflow .github/workflows/pages.yml cuida do deploy automaticamente.
-
-# 4. URL do site: https://SEU-USUARIO.github.io/libras-wild
-```
-
-Substitua `SEU-USUARIO` pelo seu nome de usuário do GitHub.
 
 ---
 
@@ -93,15 +64,3 @@ git commit -m 'data: adiciona segmentos de VIDEO_ID'
 git push
 ```
 
----
-
-## Resultados do Modelo (MINDS-Libras)
-
-| Modelo | Acurácia (10-fold) |
-|--------|-------------------|
-| ExtraTrees-1000 | **98.50% ±0.75%** |
-| Transformer v4 (sem mirror) | 94.62% ±5.59% |
-| ST-GCN + MobileNetV3 v5 | 91.88% ±4.12% |
-| LOPO (generalização real) | 74.50% ±11.68% |
-
-Ver [RESULTADOS.md](RESULTADOS.md) para análise completa.
