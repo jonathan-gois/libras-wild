@@ -21,3 +21,7 @@ data/v_librasil_landmarks/*.pkl
 !data/v_librasil_landmarks/index.csv
 data/libras_ufop_landmarks/*/*.pkl
 !data/libras_ufop_landmarks/index.csv
+
+# Site de revisão — gerado por build_review_site.py, deploy real fica em docs/review/
+LiBERT/review_site/
+LiBERT/review_site.zip
