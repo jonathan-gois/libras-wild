@@ -10,3 +10,14 @@ __pycache__/
 env/
 *.log
 nohup.out
+
+# LiBERT — artefatos grandes regeneráveis (rodar prepare_cache.py/pretrain.py/calibrate*.py)
+LiBERT/cache/
+LiBERT/checkpoints/*.pt
+!LiBERT/checkpoints/.gitkeep
+
+# Landmarks extraídos em lote — grandes, regeneráveis via src/extract_*.py
+data/v_librasil_landmarks/*.pkl
+!data/v_librasil_landmarks/index.csv
+data/libras_ufop_landmarks/*/*.pkl
+!data/libras_ufop_landmarks/index.csv
