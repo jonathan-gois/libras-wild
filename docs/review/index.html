@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LiBERT — Revisão de pré-anotação</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <div id="login-screen" class="screen">
+    <h1>LiBERT — Revisão de pré-anotação</h1>
+    <p>Você vai revisar uma amostra de 120 clipes do dataset <em>wild</em> e confirmar/corrigir as
+       propostas de glosa do modelo. Leva ~15-25 min. Seu progresso fica salvo no navegador
+       automaticamente (pode fechar e voltar depois).</p>
+    <label for="reviewer-name">Seu nome (pra identificar sua revisão):</label>
+    <input id="reviewer-name" type="text" placeholder="ex: jonathan">
+    <button id="start-btn">Começar</button>
+  </div>
+
+  <div id="review-screen" class="screen hidden">
+    <div id="progress-bar"><div id="progress-fill"></div></div>
+    <div id="progress-text"></div>
+
+    <video id="clip-video" controls autoplay loop muted></video>
+
+    <div id="info-panel">
+      <div id="predicted-info"></div>
+    </div>
+
+    <div id="answer-panel">
+      <div id="question-text"></div>
+      <div id="gloss-input-wrap">
+        <label for="gloss-input">Glosa correta:</label>
+        <input id="gloss-input" type="text" placeholder="ex: cachorro">
+      </div>
+      <div id="no-sign-wrap">
+        <label><input type="checkbox" id="no-sign-checkbox"> Não há sinal neste clipe (segmentação ruim / preparação / hold)</label>
+        <label><input type="checkbox" id="no-id-checkbox"> Há sinal, mas não consigo identificar qual é</label>
+      </div>
+    </div>
+
+    <div id="nav-buttons">
+      <button id="btn-prev">← Anterior</button>
+      <button id="btn-next">Próximo →</button>
+    </div>
+
+    <div id="export-panel">
+      <button id="btn-export">⬇ Exportar CSV (a qualquer momento)</button>
+      <span id="export-status"></span>
+    </div>
+  </div>
+
+  <div id="done-screen" class="screen hidden">
+    <h1>Revisão concluída! 🎉</h1>
+    <p>Obrigado! Clique abaixo pra baixar o CSV final e envie de volta.</p>
+    <button id="btn-export-final">⬇ Baixar CSV final</button>
+  </div>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>

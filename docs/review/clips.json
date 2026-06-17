@@ -1,0 +1,1202 @@
+[
+  {
+    "video_id": "WGrDqJeW3fw",
+    "seg_id": "seg_0077_3071",
+    "clip_file": "WGrDqJeW3fw__seg_0077_3071.mp4",
+    "t_start": 104.637,
+    "t_end": 104.978,
+    "predicted_class": "maca",
+    "similarity": 0.6540234684944153,
+    "status": "confiante"
+  },
+  {
+    "video_id": "hfumOI7b_uo",
+    "seg_id": "seg_0019_1089",
+    "clip_file": "hfumOI7b_uo__seg_0019_1089.mp4",
+    "t_start": 36.3,
+    "t_end": 37.0,
+    "predicted_class": "acontecer",
+    "similarity": 0.7734962105751038,
+    "status": "confiante"
+  },
+  {
+    "video_id": "k7zc95bjAto",
+    "seg_id": "seg_0041_4491",
+    "clip_file": "k7zc95bjAto__seg_0041_4491.mp4",
+    "t_start": 149.7,
+    "t_end": 150.033,
+    "predicted_class": "espelho",
+    "similarity": 0.6494369506835938,
+    "status": "confiante"
+  },
+  {
+    "video_id": "3rUZJhHVSvY",
+    "seg_id": "seg_0076_5244",
+    "clip_file": "3rUZJhHVSvY__seg_0076_5244.mp4",
+    "t_start": 174.8,
+    "t_end": 175.533,
+    "predicted_class": "america",
+    "similarity": 0.68468177318573,
+    "status": "confiante"
+  },
+  {
+    "video_id": "0_ZpjLKPt1E",
+    "seg_id": "seg_0057_1685",
+    "clip_file": "0_ZpjLKPt1E__seg_0057_1685.mp4",
+    "t_start": 83.818,
+    "t_end": 84.117,
+    "predicted_class": "sapo",
+    "similarity": 0.6592462062835693,
+    "status": "confiante"
+  },
+  {
+    "video_id": "mU3toRaxyQw",
+    "seg_id": "seg_0072_6585",
+    "clip_file": "mU3toRaxyQw__seg_0072_6585.mp4",
+    "t_start": 263.4,
+    "t_end": 263.72,
+    "predicted_class": "aproveitar",
+    "similarity": 0.8192089796066284,
+    "status": "confiante"
+  },
+  {
+    "video_id": "TnQDh7h0bNA",
+    "seg_id": "seg_0028_1665",
+    "clip_file": "TnQDh7h0bNA__seg_0028_1665.mp4",
+    "t_start": 66.6,
+    "t_end": 66.96,
+    "predicted_class": "banheiro",
+    "similarity": 0.6506540775299072,
+    "status": "confiante"
+  },
+  {
+    "video_id": "mU3toRaxyQw",
+    "seg_id": "seg_0013_303",
+    "clip_file": "mU3toRaxyQw__seg_0013_303.mp4",
+    "t_start": 12.12,
+    "t_end": 12.64,
+    "predicted_class": "filho",
+    "similarity": 0.6720048189163208,
+    "status": "confiante"
+  },
+  {
+    "video_id": "5KsqiAG-qgk",
+    "seg_id": "seg_0014_594",
+    "clip_file": "5KsqiAG-qgk__seg_0014_594.mp4",
+    "t_start": 19.82,
+    "t_end": 20.554,
+    "predicted_class": "barulho",
+    "similarity": 0.630936324596405,
+    "status": "confiante"
+  },
+  {
+    "video_id": "mU3toRaxyQw",
+    "seg_id": "seg_0017_859",
+    "clip_file": "mU3toRaxyQw__seg_0017_859.mp4",
+    "t_start": 34.36,
+    "t_end": 35.08,
+    "predicted_class": "medo",
+    "similarity": 0.699843168258667,
+    "status": "confiante"
+  },
+  {
+    "video_id": "MRkepVgB-5k",
+    "seg_id": "seg_0183_7988",
+    "clip_file": "MRkepVgB-5k__seg_0183_7988.mp4",
+    "t_start": 266.267,
+    "t_end": 267.267,
+    "predicted_class": "vacina",
+    "similarity": 0.6488969922065735,
+    "status": "confiante"
+  },
+  {
+    "video_id": "5FU4BfpiIYY",
+    "seg_id": "seg_0048_2668",
+    "clip_file": "5FU4BfpiIYY__seg_0048_2668.mp4",
+    "t_start": 88.933,
+    "t_end": 89.233,
+    "predicted_class": "conhecer",
+    "similarity": 0.6600318551063538,
+    "status": "confiante"
+  },
+  {
+    "video_id": "AFaGETtK56c",
+    "seg_id": "seg_0032_4341",
+    "clip_file": "AFaGETtK56c__seg_0032_4341.mp4",
+    "t_start": 144.7,
+    "t_end": 145.333,
+    "predicted_class": "amarelo",
+    "similarity": 0.6883358955383301,
+    "status": "confiante"
+  },
+  {
+    "video_id": "vku3fL57ung",
+    "seg_id": "seg_0138_5367",
+    "clip_file": "vku3fL57ung__seg_0138_5367.mp4",
+    "t_start": 223.625,
+    "t_end": 224.0,
+    "predicted_class": "esquina",
+    "similarity": 0.6431717872619629,
+    "status": "confiante"
+  },
+  {
+    "video_id": "cEgaDGAbd-Q",
+    "seg_id": "seg_0120_5586",
+    "clip_file": "cEgaDGAbd-Q__seg_0120_5586.mp4",
+    "t_start": 223.44,
+    "t_end": 224.04,
+    "predicted_class": "cinco",
+    "similarity": 0.6739145517349243,
+    "status": "confiante"
+  },
+  {
+    "video_id": "eZT-o5u719M",
+    "seg_id": "seg_0056_2926",
+    "clip_file": "eZT-o5u719M__seg_0056_2926.mp4",
+    "t_start": 97.631,
+    "t_end": 98.699,
+    "predicted_class": "ruim",
+    "similarity": 0.6728960275650024,
+    "status": "confiante"
+  },
+  {
+    "video_id": "udWSfcwMgH4",
+    "seg_id": "seg_0177_7435",
+    "clip_file": "udWSfcwMgH4__seg_0177_7435.mp4",
+    "t_start": 248.081,
+    "t_end": 248.682,
+    "predicted_class": "banco",
+    "similarity": 0.6370390057563782,
+    "status": "confiante"
+  },
+  {
+    "video_id": "iASBvcjlDHQ",
+    "seg_id": "seg_0036_1567",
+    "clip_file": "iASBvcjlDHQ__seg_0036_1567.mp4",
+    "t_start": 52.286,
+    "t_end": 53.02,
+    "predicted_class": "maca",
+    "similarity": 0.6296520233154297,
+    "status": "confiante"
+  },
+  {
+    "video_id": "PqIKJ0Py41k",
+    "seg_id": "seg_0034_2131",
+    "clip_file": "PqIKJ0Py41k__seg_0034_2131.mp4",
+    "t_start": 71.104,
+    "t_end": 71.638,
+    "predicted_class": "acontecer",
+    "similarity": 0.7668517827987671,
+    "status": "confiante"
+  },
+  {
+    "video_id": "t4h8M9FX0YA",
+    "seg_id": "seg_0037_1258",
+    "clip_file": "t4h8M9FX0YA__seg_0037_1258.mp4",
+    "t_start": 50.32,
+    "t_end": 50.68,
+    "predicted_class": "espelho",
+    "similarity": 0.7204705476760864,
+    "status": "confiante"
+  },
+  {
+    "video_id": "vNcJz1PSzVw",
+    "seg_id": "seg_0165_6838",
+    "clip_file": "vNcJz1PSzVw__seg_0165_6838.mp4",
+    "t_start": 273.52,
+    "t_end": 274.32,
+    "predicted_class": "america",
+    "similarity": 0.7094542980194092,
+    "status": "confiante"
+  },
+  {
+    "video_id": "MEW2FZbwthM",
+    "seg_id": "seg_0081_4237",
+    "clip_file": "MEW2FZbwthM__seg_0081_4237.mp4",
+    "t_start": 169.48,
+    "t_end": 169.92,
+    "predicted_class": "sapo",
+    "similarity": 0.6317223310470581,
+    "status": "confiante"
+  },
+  {
+    "video_id": "ZHEbpJfF10g",
+    "seg_id": "seg_0075_3402",
+    "clip_file": "ZHEbpJfF10g__seg_0075_3402.mp4",
+    "t_start": 113.513,
+    "t_end": 113.88,
+    "predicted_class": "aproveitar",
+    "similarity": 0.8772119879722595,
+    "status": "confiante"
+  },
+  {
+    "video_id": "rKF1HsLKvm4",
+    "seg_id": "seg_0041_2864",
+    "clip_file": "rKF1HsLKvm4__seg_0041_2864.mp4",
+    "t_start": 95.562,
+    "t_end": 95.829,
+    "predicted_class": "banheiro",
+    "similarity": 0.6341598629951477,
+    "status": "confiante"
+  },
+  {
+    "video_id": "SW3uzuFG_o0",
+    "seg_id": "seg_0021_686",
+    "clip_file": "SW3uzuFG_o0__seg_0021_686.mp4",
+    "t_start": 22.89,
+    "t_end": 23.357,
+    "predicted_class": "filho",
+    "similarity": 0.6758447885513306,
+    "status": "confiante"
+  },
+  {
+    "video_id": "TVHQA4fVT-I",
+    "seg_id": "seg_0049_2515",
+    "clip_file": "TVHQA4fVT-I__seg_0049_2515.mp4",
+    "t_start": 83.833,
+    "t_end": 84.167,
+    "predicted_class": "barulho",
+    "similarity": 0.6482923030853271,
+    "status": "confiante"
+  },
+  {
+    "video_id": "ToSVAjP-Lo0",
+    "seg_id": "seg_0016_697",
+    "clip_file": "ToSVAjP-Lo0__seg_0016_697.mp4",
+    "t_start": 23.233,
+    "t_end": 23.933,
+    "predicted_class": "medo",
+    "similarity": 0.651930570602417,
+    "status": "confiante"
+  },
+  {
+    "video_id": "U0S3733b4O0",
+    "seg_id": "seg_0015_580",
+    "clip_file": "U0S3733b4O0__seg_0015_580.mp4",
+    "t_start": 19.353,
+    "t_end": 19.62,
+    "predicted_class": "vacina",
+    "similarity": 0.6860774159431458,
+    "status": "confiante"
+  },
+  {
+    "video_id": "jcv_-C_jLQE",
+    "seg_id": "seg_0069_4367",
+    "clip_file": "jcv_-C_jLQE__seg_0069_4367.mp4",
+    "t_start": 145.567,
+    "t_end": 146.1,
+    "predicted_class": "conhecer",
+    "similarity": 0.6464300155639648,
+    "status": "confiante"
+  },
+  {
+    "video_id": "UYQGv461FaU",
+    "seg_id": "seg_0104_8331",
+    "clip_file": "UYQGv461FaU__seg_0104_8331.mp4",
+    "t_start": 277.7,
+    "t_end": 278.0,
+    "predicted_class": "amarelo",
+    "similarity": 0.6444056034088135,
+    "status": "confiante"
+  },
+  {
+    "video_id": "Uc907tOJGsM",
+    "seg_id": "seg_0019_973",
+    "clip_file": "Uc907tOJGsM__seg_0019_973.mp4",
+    "t_start": 32.466,
+    "t_end": 33.534,
+    "predicted_class": "esquina",
+    "similarity": 0.6841894388198853,
+    "status": "confiante"
+  },
+  {
+    "video_id": "AFaGETtK56c",
+    "seg_id": "seg_0023_3157",
+    "clip_file": "AFaGETtK56c__seg_0023_3157.mp4",
+    "t_start": 105.233,
+    "t_end": 105.867,
+    "predicted_class": "maca",
+    "similarity": 0.6573009490966797,
+    "status": "confiante"
+  },
+  {
+    "video_id": "GtCh8cw5P4Y",
+    "seg_id": "seg_0049_3648",
+    "clip_file": "GtCh8cw5P4Y__seg_0049_3648.mp4",
+    "t_start": 121.722,
+    "t_end": 122.022,
+    "predicted_class": "acontecer",
+    "similarity": 0.7762537598609924,
+    "status": "confiante"
+  },
+  {
+    "video_id": "vNcJz1PSzVw",
+    "seg_id": "seg_0147_6175",
+    "clip_file": "vNcJz1PSzVw__seg_0147_6175.mp4",
+    "t_start": 247.0,
+    "t_end": 247.68,
+    "predicted_class": "espelho",
+    "similarity": 0.6304632425308228,
+    "status": "confiante"
+  },
+  {
+    "video_id": "nBhhdVLeUY4",
+    "seg_id": "seg_0059_5897",
+    "clip_file": "nBhhdVLeUY4__seg_0059_5897.mp4",
+    "t_start": 196.567,
+    "t_end": 196.967,
+    "predicted_class": "america",
+    "similarity": 0.6530296206474304,
+    "status": "confiante"
+  },
+  {
+    "video_id": "jcv_-C_jLQE",
+    "seg_id": "seg_0139_10014",
+    "clip_file": "jcv_-C_jLQE__seg_0139_10014.mp4",
+    "t_start": 333.8,
+    "t_end": 334.667,
+    "predicted_class": "sapo",
+    "similarity": 0.6418653726577759,
+    "status": "confiante"
+  },
+  {
+    "video_id": "da5w9GT60kE",
+    "seg_id": "seg_0027_1038",
+    "clip_file": "da5w9GT60kE__seg_0027_1038.mp4",
+    "t_start": 34.6,
+    "t_end": 35.667,
+    "predicted_class": "aproveitar",
+    "similarity": 0.6306631565093994,
+    "status": "confiante"
+  },
+  {
+    "video_id": "K3xjB3uLySc",
+    "seg_id": "seg_0074_3773",
+    "clip_file": "K3xjB3uLySc__seg_0074_3773.mp4",
+    "t_start": 125.893,
+    "t_end": 126.293,
+    "predicted_class": "banheiro",
+    "similarity": 0.6760140061378479,
+    "status": "confiante"
+  },
+  {
+    "video_id": "97f2KhahLGM",
+    "seg_id": "seg_0014_362",
+    "clip_file": "97f2KhahLGM__seg_0014_362.mp4",
+    "t_start": 12.079,
+    "t_end": 12.412,
+    "predicted_class": "filho",
+    "similarity": 0.8356494903564453,
+    "status": "confiante"
+  },
+  {
+    "video_id": "jcv_-C_jLQE",
+    "seg_id": "seg_0190_13599",
+    "clip_file": "jcv_-C_jLQE__seg_0190_13599.mp4",
+    "t_start": 453.3,
+    "t_end": 453.633,
+    "predicted_class": "barulho",
+    "similarity": 0.691923201084137,
+    "status": "confiante"
+  },
+  {
+    "video_id": "4t4NSuWGJfI",
+    "seg_id": "seg_0076_2966",
+    "clip_file": "4t4NSuWGJfI__seg_0076_2966.mp4",
+    "t_start": 98.966,
+    "t_end": 99.232,
+    "predicted_class": "medo",
+    "similarity": 0.6744968295097351,
+    "status": "confiante"
+  },
+  {
+    "video_id": "e8PmaBDaLb0",
+    "seg_id": "seg_0014_691",
+    "clip_file": "e8PmaBDaLb0__seg_0014_691.mp4",
+    "t_start": 23.056,
+    "t_end": 23.39,
+    "predicted_class": "vacina",
+    "similarity": 0.6747653484344482,
+    "status": "confiante"
+  },
+  {
+    "video_id": "5FU4BfpiIYY",
+    "seg_id": "seg_0032_2005",
+    "clip_file": "5FU4BfpiIYY__seg_0032_2005.mp4",
+    "t_start": 66.833,
+    "t_end": 67.2,
+    "predicted_class": "conhecer",
+    "similarity": 0.7417153120040894,
+    "status": "confiante"
+  },
+  {
+    "video_id": "iASBvcjlDHQ",
+    "seg_id": "seg_0119_4302",
+    "clip_file": "iASBvcjlDHQ__seg_0119_4302.mp4",
+    "t_start": 143.543,
+    "t_end": 144.611,
+    "predicted_class": "amarelo",
+    "similarity": 0.6326966285705566,
+    "status": "confiante"
+  },
+  {
+    "video_id": "vku3fL57ung",
+    "seg_id": "seg_0143_5528",
+    "clip_file": "vku3fL57ung__seg_0143_5528.mp4",
+    "t_start": 230.333,
+    "t_end": 231.083,
+    "predicted_class": "esquina",
+    "similarity": 0.6299670934677124,
+    "status": "confiante"
+  },
+  {
+    "video_id": "bhZfzvdDAOg",
+    "seg_id": "seg_0018_2227",
+    "clip_file": "bhZfzvdDAOg__seg_0018_2227.mp4",
+    "t_start": 74.308,
+    "t_end": 74.775,
+    "predicted_class": "maca",
+    "similarity": 0.6593455076217651,
+    "status": "confiante"
+  },
+  {
+    "video_id": "582XmupJYco",
+    "seg_id": "seg_0005_540",
+    "clip_file": "582XmupJYco__seg_0005_540.mp4",
+    "t_start": 18.0,
+    "t_end": 18.333,
+    "predicted_class": "acontecer",
+    "similarity": 0.8270905017852783,
+    "status": "confiante"
+  },
+  {
+    "video_id": "mfa5tBaOg5Y",
+    "seg_id": "seg_0049_3115",
+    "clip_file": "mfa5tBaOg5Y__seg_0049_3115.mp4",
+    "t_start": 124.6,
+    "t_end": 124.88,
+    "predicted_class": "espelho",
+    "similarity": 0.6862027645111084,
+    "status": "confiante"
+  },
+  {
+    "video_id": "4t4NSuWGJfI",
+    "seg_id": "seg_0236_9495",
+    "clip_file": "4t4NSuWGJfI__seg_0236_9495.mp4",
+    "t_start": 316.816,
+    "t_end": 317.117,
+    "predicted_class": "america",
+    "similarity": 0.7050557732582092,
+    "status": "confiante"
+  },
+  {
+    "video_id": "TnQDh7h0bNA",
+    "seg_id": "seg_0009_467",
+    "clip_file": "TnQDh7h0bNA__seg_0009_467.mp4",
+    "t_start": 18.68,
+    "t_end": 19.56,
+    "predicted_class": "sapo",
+    "similarity": 0.7394698858261108,
+    "status": "confiante"
+  },
+  {
+    "video_id": "dmsbfSjtXGM",
+    "seg_id": "seg_0092_5288",
+    "clip_file": "dmsbfSjtXGM__seg_0092_5288.mp4",
+    "t_start": 176.443,
+    "t_end": 176.743,
+    "predicted_class": "aproveitar",
+    "similarity": 0.7257999181747437,
+    "status": "confiante"
+  },
+  {
+    "video_id": "94j_xHN_dVM",
+    "seg_id": "seg_0070_3006",
+    "clip_file": "94j_xHN_dVM__seg_0070_3006.mp4",
+    "t_start": 100.3,
+    "t_end": 101.134,
+    "predicted_class": "banheiro",
+    "similarity": 0.6592992544174194,
+    "status": "confiante"
+  },
+  {
+    "video_id": "97f2KhahLGM",
+    "seg_id": "seg_0510_22232",
+    "clip_file": "97f2KhahLGM__seg_0510_22232.mp4",
+    "t_start": 741.808,
+    "t_end": 742.242,
+    "predicted_class": "filho",
+    "similarity": 0.6745232343673706,
+    "status": "confiante"
+  },
+  {
+    "video_id": "A4DN0UYdq8g",
+    "seg_id": "seg_0193_10845",
+    "clip_file": "A4DN0UYdq8g__seg_0193_10845.mp4",
+    "t_start": 361.5,
+    "t_end": 362.2,
+    "predicted_class": "barulho",
+    "similarity": 0.6967176198959351,
+    "status": "confiante"
+  },
+  {
+    "video_id": "4t4NSuWGJfI",
+    "seg_id": "seg_0056_2268",
+    "clip_file": "4t4NSuWGJfI__seg_0056_2268.mp4",
+    "t_start": 75.676,
+    "t_end": 76.276,
+    "predicted_class": "medo",
+    "similarity": 0.8144171237945557,
+    "status": "confiante"
+  },
+  {
+    "video_id": "SW3uzuFG_o0",
+    "seg_id": "seg_0158_9097",
+    "clip_file": "SW3uzuFG_o0__seg_0158_9097.mp4",
+    "t_start": 303.537,
+    "t_end": 303.87,
+    "predicted_class": "vacina",
+    "similarity": 0.6417521238327026,
+    "status": "confiante"
+  },
+  {
+    "video_id": "P4hPYaWLl34",
+    "seg_id": "seg_0083_2824",
+    "clip_file": "P4hPYaWLl34__seg_0083_2824.mp4",
+    "t_start": 112.96,
+    "t_end": 113.28,
+    "predicted_class": "conhecer",
+    "similarity": 0.6264746785163879,
+    "status": "confiante"
+  },
+  {
+    "video_id": "qDhxqjb9bIQ",
+    "seg_id": "seg_0068_3265",
+    "clip_file": "qDhxqjb9bIQ__seg_0068_3265.mp4",
+    "t_start": 108.942,
+    "t_end": 109.476,
+    "predicted_class": "amarelo",
+    "similarity": 0.6444302201271057,
+    "status": "confiante"
+  },
+  {
+    "video_id": "Yxo-OXWGikc",
+    "seg_id": "seg_0134_17638",
+    "clip_file": "Yxo-OXWGikc__seg_0134_17638.mp4",
+    "t_start": 588.521,
+    "t_end": 589.255,
+    "predicted_class": "esquina",
+    "similarity": 0.6470760107040405,
+    "status": "confiante"
+  },
+  {
+    "video_id": "4t4NSuWGJfI",
+    "seg_id": "seg_0175_6951",
+    "clip_file": "4t4NSuWGJfI__seg_0175_6951.mp4",
+    "t_start": 231.932,
+    "t_end": 232.232,
+    "predicted_class": "maca",
+    "similarity": 0.6601343154907227,
+    "status": "confiante"
+  },
+  {
+    "video_id": "A4DN0UYdq8g",
+    "seg_id": "seg_0043_2315",
+    "clip_file": "A4DN0UYdq8g__seg_0043_2315.mp4",
+    "t_start": 77.167,
+    "t_end": 77.9,
+    "predicted_class": "america",
+    "similarity": 0.3999891281127929,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "csRp3F9hoHY",
+    "seg_id": "seg_0202_9511",
+    "clip_file": "csRp3F9hoHY__seg_0202_9511.mp4",
+    "t_start": 380.44,
+    "t_end": 380.76,
+    "predicted_class": "aproveitar",
+    "similarity": 0.4771751761436462,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "eZT-o5u719M",
+    "seg_id": "seg_0126_5081",
+    "clip_file": "eZT-o5u719M__seg_0126_5081.mp4",
+    "t_start": 169.536,
+    "t_end": 170.604,
+    "predicted_class": "barulho",
+    "similarity": 0.371407151222229,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "A4DN0UYdq8g",
+    "seg_id": "seg_0173_9180",
+    "clip_file": "A4DN0UYdq8g__seg_0173_9180.mp4",
+    "t_start": 306.0,
+    "t_end": 306.9,
+    "predicted_class": "acontecer",
+    "similarity": 0.5414999723434448,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "eZT-o5u719M",
+    "seg_id": "seg_0054_2899",
+    "clip_file": "eZT-o5u719M__seg_0054_2899.mp4",
+    "t_start": 96.73,
+    "t_end": 97.164,
+    "predicted_class": "acontecer",
+    "similarity": 0.5366834402084351,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "PKZc6PDHGPQ",
+    "seg_id": "seg_0110_3987",
+    "clip_file": "PKZc6PDHGPQ__seg_0110_3987.mp4",
+    "t_start": 137.483,
+    "t_end": 138.448,
+    "predicted_class": "america",
+    "similarity": 0.5838500261306763,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "rKF1HsLKvm4",
+    "seg_id": "seg_0012_748",
+    "clip_file": "rKF1HsLKvm4__seg_0012_748.mp4",
+    "t_start": 24.958,
+    "t_end": 25.259,
+    "predicted_class": "banheiro",
+    "similarity": 0.6135779619216919,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "7GdVoa3HjUg",
+    "seg_id": "seg_0074_2165",
+    "clip_file": "7GdVoa3HjUg__seg_0074_2165.mp4",
+    "t_start": 72.239,
+    "t_end": 72.706,
+    "predicted_class": "acontecer",
+    "similarity": 0.5096609592437744,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "3lyAmxjan-8",
+    "seg_id": "seg_0032_1872",
+    "clip_file": "3lyAmxjan-8__seg_0032_1872.mp4",
+    "t_start": 62.4,
+    "t_end": 63.467,
+    "predicted_class": "aproveitar",
+    "similarity": 0.2815375924110412,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "Yxo-OXWGikc",
+    "seg_id": "seg_0045_5510",
+    "clip_file": "Yxo-OXWGikc__seg_0045_5510.mp4",
+    "t_start": 183.85,
+    "t_end": 184.284,
+    "predicted_class": "filho",
+    "similarity": 0.511713445186615,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "94j_xHN_dVM",
+    "seg_id": "seg_0128_5429",
+    "clip_file": "94j_xHN_dVM__seg_0128_5429.mp4",
+    "t_start": 181.148,
+    "t_end": 181.848,
+    "predicted_class": "aproveitar",
+    "similarity": 0.5498428344726562,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "4t4NSuWGJfI",
+    "seg_id": "seg_0251_9815",
+    "clip_file": "4t4NSuWGJfI__seg_0251_9815.mp4",
+    "t_start": 327.494,
+    "t_end": 327.928,
+    "predicted_class": "acontecer",
+    "similarity": 0.3705600202083587,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "97f2KhahLGM",
+    "seg_id": "seg_0221_8335",
+    "clip_file": "97f2KhahLGM__seg_0221_8335.mp4",
+    "t_start": 278.111,
+    "t_end": 278.512,
+    "predicted_class": "acontecer",
+    "similarity": 0.4141047298908233,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "AMUJzJI-v1U",
+    "seg_id": "seg_0116_5879",
+    "clip_file": "AMUJzJI-v1U__seg_0116_5879.mp4",
+    "t_start": 196.163,
+    "t_end": 197.23,
+    "predicted_class": "acontecer",
+    "similarity": 0.5716480016708374,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "611jt9Ku4R4",
+    "seg_id": "seg_0005_736",
+    "clip_file": "611jt9Ku4R4__seg_0005_736.mp4",
+    "t_start": 24.558,
+    "t_end": 25.259,
+    "predicted_class": "filho",
+    "similarity": 0.4497327804565429,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "MEW2FZbwthM",
+    "seg_id": "seg_0147_7155",
+    "clip_file": "MEW2FZbwthM__seg_0147_7155.mp4",
+    "t_start": 286.2,
+    "t_end": 286.6,
+    "predicted_class": "espelho",
+    "similarity": 0.4567543864250183,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "KPyr8jFaB2k",
+    "seg_id": "seg_0202_4653",
+    "clip_file": "KPyr8jFaB2k__seg_0202_4653.mp4",
+    "t_start": 155.255,
+    "t_end": 155.956,
+    "predicted_class": "amarelo",
+    "similarity": 0.5171728730201721,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "MEW2FZbwthM",
+    "seg_id": "seg_0056_2970",
+    "clip_file": "MEW2FZbwthM__seg_0056_2970.mp4",
+    "t_start": 118.8,
+    "t_end": 119.2,
+    "predicted_class": "vacina",
+    "similarity": 0.5100136995315552,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "vku3fL57ung",
+    "seg_id": "seg_0153_6118",
+    "clip_file": "vku3fL57ung__seg_0153_6118.mp4",
+    "t_start": 254.917,
+    "t_end": 255.333,
+    "predicted_class": "acontecer",
+    "similarity": 0.3576444387435913,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "eZT-o5u719M",
+    "seg_id": "seg_0157_6069",
+    "clip_file": "eZT-o5u719M__seg_0157_6069.mp4",
+    "t_start": 202.502,
+    "t_end": 203.37,
+    "predicted_class": "acontecer",
+    "similarity": 0.5144608020782471,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "611jt9Ku4R4",
+    "seg_id": "seg_0095_4134",
+    "clip_file": "611jt9Ku4R4__seg_0095_4134.mp4",
+    "t_start": 137.938,
+    "t_end": 138.705,
+    "predicted_class": "filho",
+    "similarity": 0.4088910222053528,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "JjAcxZz10rY",
+    "seg_id": "seg_0086_3645",
+    "clip_file": "JjAcxZz10rY__seg_0086_3645.mp4",
+    "t_start": 152.027,
+    "t_end": 152.611,
+    "predicted_class": "espelho",
+    "similarity": 0.5866684317588806,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "jXZrO2pcIEw",
+    "seg_id": "seg_0103_4888",
+    "clip_file": "jXZrO2pcIEw__seg_0103_4888.mp4",
+    "t_start": 162.933,
+    "t_end": 163.433,
+    "predicted_class": "acontecer",
+    "similarity": 0.621487021446228,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "A4DN0UYdq8g",
+    "seg_id": "seg_0070_5161",
+    "clip_file": "A4DN0UYdq8g__seg_0070_5161.mp4",
+    "t_start": 172.033,
+    "t_end": 172.433,
+    "predicted_class": "espelho",
+    "similarity": 0.4472821950912475,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "ZHEbpJfF10g",
+    "seg_id": "seg_0052_2519",
+    "clip_file": "ZHEbpJfF10g__seg_0052_2519.mp4",
+    "t_start": 84.051,
+    "t_end": 84.418,
+    "predicted_class": "aproveitar",
+    "similarity": 0.4093824923038482,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "97f2KhahLGM",
+    "seg_id": "seg_0464_20370",
+    "clip_file": "97f2KhahLGM__seg_0464_20370.mp4",
+    "t_start": 679.679,
+    "t_end": 680.346,
+    "predicted_class": "america",
+    "similarity": 0.5699911117553711,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "ytnaqz5N7qU",
+    "seg_id": "seg_0250_16366",
+    "clip_file": "ytnaqz5N7qU__seg_0250_16366.mp4",
+    "t_start": 546.079,
+    "t_end": 546.513,
+    "predicted_class": "vacina",
+    "similarity": 0.250984787940979,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "NACi3puNuFE",
+    "seg_id": "seg_0035_2278",
+    "clip_file": "NACi3puNuFE__seg_0035_2278.mp4",
+    "t_start": 76.009,
+    "t_end": 76.31,
+    "predicted_class": "acontecer",
+    "similarity": 0.5940904021263123,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "vku3fL57ung",
+    "seg_id": "seg_0251_9721",
+    "clip_file": "vku3fL57ung__seg_0251_9721.mp4",
+    "t_start": 405.042,
+    "t_end": 405.5,
+    "predicted_class": "espelho",
+    "similarity": 0.5435652136802673,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "Nt4VgTCDvrw",
+    "seg_id": "seg_0037_2269",
+    "clip_file": "Nt4VgTCDvrw__seg_0037_2269.mp4",
+    "t_start": 75.709,
+    "t_end": 76.109,
+    "predicted_class": "espelho",
+    "similarity": 0.5128011107444763,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "qjpXyr-KF5E",
+    "seg_id": "seg_0276_10359",
+    "clip_file": "qjpXyr-KF5E__seg_0276_10359.mp4",
+    "t_start": 345.3,
+    "t_end": 345.733,
+    "predicted_class": "filho",
+    "similarity": 0.5130182504653931,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "7GdVoa3HjUg",
+    "seg_id": "seg_0058_1753",
+    "clip_file": "7GdVoa3HjUg__seg_0058_1753.mp4",
+    "t_start": 58.492,
+    "t_end": 58.992,
+    "predicted_class": "filho",
+    "similarity": 0.3651983141899109,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "k7zc95bjAto",
+    "seg_id": "seg_0057_5291",
+    "clip_file": "k7zc95bjAto__seg_0057_5291.mp4",
+    "t_start": 176.367,
+    "t_end": 176.7,
+    "predicted_class": "aproveitar",
+    "similarity": 0.3566316962242126,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "VgKScUwLpZI",
+    "seg_id": "seg_0243_9974",
+    "clip_file": "VgKScUwLpZI__seg_0243_9974.mp4",
+    "t_start": 332.467,
+    "t_end": 332.9,
+    "predicted_class": "acontecer",
+    "similarity": 0.4983275830745697,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "sKop9I41JK8",
+    "seg_id": "seg_0012_395",
+    "clip_file": "sKop9I41JK8__seg_0012_395.mp4",
+    "t_start": 16.475,
+    "t_end": 17.559,
+    "predicted_class": "vacina",
+    "similarity": 0.4702625274658203,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "ToSVAjP-Lo0",
+    "seg_id": "seg_0064_3283",
+    "clip_file": "ToSVAjP-Lo0__seg_0064_3283.mp4",
+    "t_start": 109.433,
+    "t_end": 109.767,
+    "predicted_class": "filho",
+    "similarity": 0.4500451982021332,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "611jt9Ku4R4",
+    "seg_id": "seg_0110_4433",
+    "clip_file": "611jt9Ku4R4__seg_0110_4433.mp4",
+    "t_start": 147.914,
+    "t_end": 148.849,
+    "predicted_class": "filho",
+    "similarity": 0.5231281518936157,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "vNcJz1PSzVw",
+    "seg_id": "seg_0102_4458",
+    "clip_file": "vNcJz1PSzVw__seg_0102_4458.mp4",
+    "t_start": 178.32,
+    "t_end": 178.76,
+    "predicted_class": "acontecer",
+    "similarity": 0.5331247448921204,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "U0S3733b4O0",
+    "seg_id": "seg_0105_5644",
+    "clip_file": "U0S3733b4O0__seg_0105_5644.mp4",
+    "t_start": 188.321,
+    "t_end": 188.755,
+    "predicted_class": "acontecer",
+    "similarity": 0.5482614040374756,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "NVfQ2ZCKADI",
+    "seg_id": "seg_0051_2444",
+    "clip_file": "NVfQ2ZCKADI__seg_0051_2444.mp4",
+    "t_start": 97.76,
+    "t_end": 98.04,
+    "predicted_class": "barulho",
+    "similarity": 0.5344940423965454,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "k8EnZ94qj-Q",
+    "seg_id": "seg_0012_2685",
+    "clip_file": "k8EnZ94qj-Q__seg_0012_2685.mp4",
+    "t_start": 89.59,
+    "t_end": 89.89,
+    "predicted_class": "vacina",
+    "similarity": 0.3348422646522522,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "U0S3733b4O0",
+    "seg_id": "seg_0088_4227",
+    "clip_file": "U0S3733b4O0__seg_0088_4227.mp4",
+    "t_start": 141.041,
+    "t_end": 141.875,
+    "predicted_class": "barulho",
+    "similarity": 0.567642331123352,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "AbTHN7W9s_c",
+    "seg_id": "seg_0024_1884",
+    "clip_file": "AbTHN7W9s_c__seg_0024_1884.mp4",
+    "t_start": 62.863,
+    "t_end": 63.196,
+    "predicted_class": "aproveitar",
+    "similarity": 0.4194160401821136,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "L6o3dJHn93I",
+    "seg_id": "seg_0167_7808",
+    "clip_file": "L6o3dJHn93I__seg_0167_7808.mp4",
+    "t_start": 260.527,
+    "t_end": 261.428,
+    "predicted_class": "vacina",
+    "similarity": 0.4008708000183105,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "7GdVoa3HjUg",
+    "seg_id": "seg_0379_10896",
+    "clip_file": "7GdVoa3HjUg__seg_0379_10896.mp4",
+    "t_start": 363.563,
+    "t_end": 364.364,
+    "predicted_class": "amarelo",
+    "similarity": 0.3671765923500061,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "tuAedL5q0Jc",
+    "seg_id": "seg_0021_710",
+    "clip_file": "tuAedL5q0Jc__seg_0021_710.mp4",
+    "t_start": 29.583,
+    "t_end": 29.958,
+    "predicted_class": "aproveitar",
+    "similarity": 0.5529787540435791,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "ZHEbpJfF10g",
+    "seg_id": "seg_0068_3105",
+    "clip_file": "ZHEbpJfF10g__seg_0068_3105.mp4",
+    "t_start": 103.604,
+    "t_end": 104.071,
+    "predicted_class": "aproveitar",
+    "similarity": 0.5013457536697388,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "NVfQ2ZCKADI",
+    "seg_id": "seg_0136_5403",
+    "clip_file": "NVfQ2ZCKADI__seg_0136_5403.mp4",
+    "t_start": 216.12,
+    "t_end": 216.4,
+    "predicted_class": "acontecer",
+    "similarity": 0.6089720726013184,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "mfa5tBaOg5Y",
+    "seg_id": "seg_0002_158",
+    "clip_file": "mfa5tBaOg5Y__seg_0002_158.mp4",
+    "t_start": 6.32,
+    "t_end": 6.76,
+    "predicted_class": "aproveitar",
+    "similarity": 0.5436356067657471,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "94j_xHN_dVM",
+    "seg_id": "seg_0133_5583",
+    "clip_file": "94j_xHN_dVM__seg_0133_5583.mp4",
+    "t_start": 186.286,
+    "t_end": 186.953,
+    "predicted_class": "acontecer",
+    "similarity": 0.4259561896324157,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "TT26jZmkV_s",
+    "seg_id": "seg_0074_1275",
+    "clip_file": "TT26jZmkV_s__seg_0074_1275.mp4",
+    "t_start": 85.0,
+    "t_end": 85.333,
+    "predicted_class": "cinco",
+    "similarity": 0.4056169092655182,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "KPyr8jFaB2k",
+    "seg_id": "seg_0213_4950",
+    "clip_file": "KPyr8jFaB2k__seg_0213_4950.mp4",
+    "t_start": 165.165,
+    "t_end": 166.233,
+    "predicted_class": "amarelo",
+    "similarity": 0.432334691286087,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "da5w9GT60kE",
+    "seg_id": "seg_0109_4595",
+    "clip_file": "da5w9GT60kE__seg_0109_4595.mp4",
+    "t_start": 153.167,
+    "t_end": 153.967,
+    "predicted_class": "filho",
+    "similarity": 0.5825804471969604,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "WGrDqJeW3fw",
+    "seg_id": "seg_0135_5099",
+    "clip_file": "WGrDqJeW3fw__seg_0135_5099.mp4",
+    "t_start": 173.737,
+    "t_end": 174.146,
+    "predicted_class": "maca",
+    "similarity": 0.538561999797821,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "mfa5tBaOg5Y",
+    "seg_id": "seg_0129_8404",
+    "clip_file": "mfa5tBaOg5Y__seg_0129_8404.mp4",
+    "t_start": 336.16,
+    "t_end": 336.56,
+    "predicted_class": "acontecer",
+    "similarity": 0.4802532494068146,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "UYQGv461FaU",
+    "seg_id": "seg_0041_3016",
+    "clip_file": "UYQGv461FaU__seg_0041_3016.mp4",
+    "t_start": 100.533,
+    "t_end": 100.9,
+    "predicted_class": "espelho",
+    "similarity": 0.5827677249908447,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "PKZc6PDHGPQ",
+    "seg_id": "seg_0039_1409",
+    "clip_file": "PKZc6PDHGPQ__seg_0039_1409.mp4",
+    "t_start": 48.586,
+    "t_end": 49.345,
+    "predicted_class": "america",
+    "similarity": 0.6025104522705078,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "k7zc95bjAto",
+    "seg_id": "seg_0077_7250",
+    "clip_file": "k7zc95bjAto__seg_0077_7250.mp4",
+    "t_start": 241.667,
+    "t_end": 242.1,
+    "predicted_class": "espelho",
+    "similarity": 0.3747861385345459,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "eZT-o5u719M",
+    "seg_id": "seg_0265_9979",
+    "clip_file": "eZT-o5u719M__seg_0265_9979.mp4",
+    "t_start": 332.966,
+    "t_end": 333.466,
+    "predicted_class": "acontecer",
+    "similarity": 0.6193650960922241,
+    "status": "desconhecido"
+  },
+  {
+    "video_id": "RtccCJWGazw",
+    "seg_id": "seg_0061_2730",
+    "clip_file": "RtccCJWGazw__seg_0061_2730.mp4",
+    "t_start": 91.091,
+    "t_end": 91.625,
+    "predicted_class": "acontecer",
+    "similarity": 0.4119511842727661,
+    "status": "desconhecido"
+  }
+]
