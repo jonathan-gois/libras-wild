@@ -32,7 +32,10 @@ OUT_DIR    = Path("data/phonetic")
 DICT_FILE  = OUT_DIR / "dictionary.json"
 MODEL_ID   = "Qwen/Qwen2-VL-7B-Instruct"
 USE_4BIT   = True        # quantização 4-bit → ~4GB VRAM
-MAX_FRAMES = 16          # frames amostrados do vídeo (Qwen2-VL aceita até ~32)
+MAX_FRAMES = 8           # frames amostrados do vídeo (reduzido de 16 para caber
+                          # em ~7.7GB VRAM compartilhada junto ao modelo 4-bit;
+                          # Qwen2-VL aceita até ~32, mas isso estourava memória
+                          # durante a geração/ativações da visão)
 SKIP_EXISTING = True     # não re-anota vídeos já processados
 
 CLASSES = {
@@ -77,10 +80,16 @@ def load_model():
         bnb_4bit_quant_type="nf4",
     ) if USE_4BIT else None
 
+    # device_map={"": 0} força tudo para a GPU 0 num único bloco, evitando o
+    # caminho de despacho CPU/GPU misto do accelerate (que tem um bug de
+    # incompatibilidade entre bitsandbytes 0.49.2 e transformers 5.5.0:
+    # `Params4bit.__new__() got an unexpected keyword argument
+    # '_is_hf_initialized'` ao tentar montar hooks de offload). Requer que a
+    # GPU tenha memória livre suficiente para o modelo inteiro (~5.4GiB).
     model = Qwen2VLForConditionalGeneration.from_pretrained(
         MODEL_ID,
         quantization_config=bnb_cfg,
-        device_map="auto",
+        device_map={"": 0} if torch.cuda.is_available() else "auto",
         torch_dtype=torch.float16 if not USE_4BIT else None,
         attn_implementation="flash_attention_2" if _has_flash_attn() else "eager",
     )
