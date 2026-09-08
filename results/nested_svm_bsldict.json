@@ -1,0 +1,137 @@
+{
+  "corpus": "bsldict",
+  "method": "KIN+SVM nested GridSearchCV",
+  "protocol": "source_site_db (LOSO)",
+  "n_samples": 1373,
+  "n_classes": 239,
+  "min_per_class": 5,
+  "acc_mean": 0.015574555353085951,
+  "acc_std": 0.018810366787502482,
+  "n_folds": 16,
+  "fold_accs": [
+    0.0,
+    0.0,
+    0.0,
+    0.034482758620689655,
+    0.0,
+    0.03260869565217391,
+    0.023076923076923078,
+    0.0,
+    0.023255813953488372,
+    0.0,
+    0.0,
+    0.06060606060606061,
+    0.04602510460251046,
+    0.013986013986013986,
+    0.0,
+    0.015151515151515152
+  ],
+  "fold_groups": [
+    "- Ben Fletcher - Tech Signs",
+    "- Bob McCluskey",
+    "- Deafax",
+    "- Exeter Deaf Academy",
+    "- Hair and Beauty",
+    "- Karl O'Keeffe",
+    "- Nathanael Farley",
+    "- National Deaf Children's Society",
+    "- QIA Dictionary of ICT",
+    "- Royal Association for Deaf",
+    "- Sam Simon",
+    "- Scottish Sensory Centre",
+    "- SignStation",
+    "- University of Wolverhampton",
+    "nan",
+    "unknown"
+  ],
+  "per_group": {
+    "- Ben Fletcher - Tech Signs": 0.0,
+    "- Bob McCluskey": 0.0,
+    "- Deafax": 0.0,
+    "- Exeter Deaf Academy": 0.034482758620689655,
+    "- Hair and Beauty": 0.0,
+    "- Karl O'Keeffe": 0.03260869565217391,
+    "- Nathanael Farley": 0.023076923076923078,
+    "- National Deaf Children's Society": 0.0,
+    "- QIA Dictionary of ICT": 0.023255813953488372,
+    "- Royal Association for Deaf": 0.0,
+    "- Sam Simon": 0.0,
+    "- Scottish Sensory Centre": 0.06060606060606061,
+    "- SignStation": 0.04602510460251046,
+    "- University of Wolverhampton": 0.013986013986013986,
+    "nan": 0.0,
+    "unknown": 0.015151515151515152
+  },
+  "skipped": [
+    "- Georgia Grace",
+    "- Jessica Boland"
+  ],
+  "best_params": [
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    },
+    {
+      "svm__C": 10,
+      "svm__gamma": "scale"
+    }
+  ],
+  "note": "Bug O1 fix: inner 5-fold GridSearchCV C in {0.1,1,10,100,1000}, gamma in {scale,auto}",
+  "elapsed_s": 690.1306171417236
+}

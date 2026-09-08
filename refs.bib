@@ -1,0 +1,415 @@
+% ── refs.bib — Libras 2026 ────────────────────────────────────────────────────
+% Atualizado em 2026-05-05. Entradas em ordem alfabética por chave.
+% Cada entrada precedida de resumo curto para orientação da escrita.
+
+% 38.336 vídeos, 226 classes, 43 sinalizadores; dataset de língua de sinais turca.
+% Comparação de escala com MINDS-Libras (1.560 amostras, 20 classes).
+@article{autsl2020,
+  author  = {Sincan, Ozge Mercanoglu and Keles, Hacer Yalim},
+  title   = {{AUTSL}: A Large Scale Multi-Modal {Turkish} Sign Language Dataset
+             and Baseline Methods},
+  journal = {IEEE Access},
+  volume  = {8},
+  pages   = {181340--181355},
+  year    = {2020},
+}
+
+% CNN 3D no MINDS-Libras; 96.0% com RGB. TODO: confirmar autores, título e DOI exatos.
+@inproceedings{decastro2022,
+  author    = {De Castro, A. and others},
+  title     = {{TODO: título exato}},
+  booktitle = {Proc.\ SIBGRAPI},
+  year      = {2022},
+  note      = {TODO: verificar DOI/páginas},
+}
+
+% Relatório técnico próprio: DKF + features cinemáticas para ISLR no MINDS-Libras.
+@techreport{gois2026v1,
+  author      = {Gois, Jonathan Nogueira},
+  title       = {{DKF}-Enhanced Feature Extraction for Isolated Sign Language
+                 Recognition in {MINDS-Libras}},
+  institution = {UFMA},
+  year        = {2026},
+}
+
+% CNN vs. LSTM com landmarks MediaPipe para ISLR em língua de sinais indiana;
+% LSTM superior para gestos dinâmicos. Justifica uso de MediaPipe + classificadores.
+@misc{goyal2023mediapipe,
+  author        = {Goyal, Kaushal and Velmathi, G.},
+  title         = {Indian Sign Language Recognition Using {MediaPipe Holistic}},
+  year          = {2023},
+  eprint        = {2304.10256},
+  archivePrefix = {arXiv},
+}
+
+% Artigo original da GEI: compressão temporal de sequências em imagem de energia
+% para reconhecimento de marcha. Base conceitual para GEI aplicado a SLR.
+@article{han2006gei,
+  author  = {Han, Jinguang and Bhanu, Bir},
+  title   = {Individual Recognition Using Gait Energy Image},
+  journal = {IEEE Trans.\ Pattern Anal.\ Mach.\ Intell.},
+  volume  = {28},
+  number  = {2},
+  pages   = {316--322},
+  year    = {2006},
+}
+
+% Censo 2010: ~9,7 milhões de brasileiros com deficiência auditiva;
+% ~2,7 milhões com perda severa ou total (1,3% da população).
+@book{ibge2010,
+  author    = {{Instituto Brasileiro de Geografia e Estatística}},
+  title     = {Censo Demográfico 2010: Características gerais da população,
+               religião e pessoas com deficiência},
+  publisher = {IBGE},
+  address   = {Rio de Janeiro},
+  year      = {2012},
+}
+
+% DMSign: mistura dinâmica de canais para CSLR eficiente. ICASSP 2026.
+% Contextualiza métodos lightweight temporais modernos em CSLR.
+@inproceedings{jiang2026,
+  author    = {Jiang, Zecheng and others},
+  title     = {{DMSign}: Dynamic Channel Mixing for Efficient Continuous Sign
+               Language Recognition},
+  booktitle = {Proc.\ ICASSP},
+  year      = {2026},
+  note      = {Arquivo: refs/2026\_Jiang\_...pdf},
+}
+
+% Survey quantitativo de SLR: cobre datasets (Phoenix, CSL, RWTH), CTC, attention.
+% Referência para contextualizar CSLR vs. ISLR no Related Work.
+@misc{koller2020survey,
+  author        = {Koller, Oscar},
+  title         = {Quantitative Survey of the State of the Art in Sign Language Recognition},
+  year          = {2020},
+  eprint        = {2008.09918},
+  archivePrefix = {arXiv},
+}
+
+% Lei que reconhece oficialmente Libras como língua da comunidade surda brasileira.
+% Regulamentada pelo Decreto 5.626/2005.
+@misc{lei2002,
+  author       = {{República Federativa do Brasil}},
+  title        = {Lei n\textsuperscript{o}~10.436, de 24 de abril de 2002},
+  howpublished = {Diário Oficial da União},
+  year         = {2002},
+  url          = {https://www.planalto.gov.br/ccivil_03/leis/2002/l10436.htm},
+  note         = {Dispõe sobre a Língua Brasileira de Sinais -- Libras},
+}
+
+% MediaPipe Holistic com 33 pose + 42 hand keypoints para ISLR.
+% TODO: verificar título exato — buscar "MediaPipe sign language IEEE Sensors 2023".
+@article{lin2023mediapipe,
+  author  = {Lin, Yi-Chen and others},
+  title   = {Sign Language Recognition Using {MediaPipe Holistic}},
+  journal = {IEEE Sensors Journal},
+  year    = {2023},
+  note    = {TODO: verificar volume, número, páginas e DOI},
+}
+
+% LSWH100: 144.000 imagens sintéticas de handshapes para Libras via SignWriting.
+% Trabalho complementar em datasets de Libras (PMC11357844).
+@article{lobo2024,
+  author  = {Lobo-Neto, Vicente Coelho and Pedrini, Helio},
+  title   = {{LSWH100}: A Handshape Dataset for {Brazilian Sign Language (Libras)}
+             Using {SignWriting}},
+  journal = {Data in Brief},
+  year    = {2024},
+  note    = {PMC11357844},
+}
+
+% MediaPipe: framework open-source do Google para pipelines de percepção em tempo real.
+% Backbone de extração de landmarks (pose, mãos, face) usado neste trabalho.
+@misc{mediapipe,
+  author        = {Lugaresi, Camillo and others},
+  title         = {{MediaPipe}: A Framework for Building Perception Pipelines},
+  year          = {2019},
+  eprint        = {1906.08172},
+  archivePrefix = {arXiv},
+}
+
+% GEI+SVD+SVM no MINDS-Libras; 84.66% Prot-A. Dataset original: 20 classes,
+% 12 sinalizadores, RGB+depth+skeleton. IEEE T-CASI vol. 68, pp. 4761–4771.
+@article{passos2021,
+  author  = {Passos, W. L. and Araujo, G. M. and Gois, J. N. and de Lima, A. A.},
+  title   = {A Gait Energy Image-Based System for {Brazilian Sign Language} Recognition},
+  journal = {IEEE Trans.\ Circuits Syst.\ I, Reg.\ Papers},
+  volume  = {68},
+  number  = {11},
+  pages   = {4761--4771},
+  month   = nov,
+  year    = {2021},
+  doi     = {10.1109/TCSI.2021.3095694},
+}
+
+% Phoenix-Weather 2014: benchmark padrão para CSLR em língua de sinais alemã;
+% 9 sinalizadores, 25 fps. Referência para comparação de escala e metodologia.
+@article{phoenix2014,
+  author  = {Koller, Oscar and others},
+  title   = {Continuous Sign Language Recognition: Towards Large Vocabulary
+             Statistical Recognition Systems Handling Multiple Signers},
+  journal = {Computer Vision and Image Understanding},
+  volume  = {141},
+  pages   = {108--125},
+  year    = {2015},
+}
+
+% Referência linguística padrão de Libras: fonologia, morfologia, sintaxe.
+% Usar ao discutir assimetria fonológica (lateralidade) na seção de mirror augmentation.
+@book{quadros2004,
+  author    = {Quadros, Ronice Müller de and Karnopp, Lodenir Becker},
+  title     = {Língua de sinais brasileira: estudos linguísticos},
+  publisher = {Artmed},
+  address   = {Porto Alegre},
+  year      = {2004},
+}
+
+% Survey de SLR com DL: cobre GEI, skeleton, optical flow, ISLR e CSLR.
+% Expert Systems with Applications, 2021.
+@article{rastgoo2021,
+  author  = {Rastgoo, Razieh and Kiani, Kourosh and Escalera, Sergio},
+  title   = {Sign Language Recognition: A Deep Survey},
+  journal = {Expert Systems with Applications},
+  volume  = {164},
+  pages   = {113794},
+  year    = {2021},
+}
+
+% Features KIN + FFT + DL no MINDS-Libras; 92% Prot-B, 77% LOPO. IEEE Access 2025.
+% Referência direta mais recente em Libras — nossos resultados superam em Prot-B.
+@article{rego2025,
+  author  = {Rego, R. C. and de Morais, L. M. and Almeida, W. M.},
+  title   = {Brazilian Sign Language Recognition Using Deep Learning Based on
+             {Fast Fourier Transform} and Kinematic Features},
+  journal = {IEEE Access},
+  volume  = {13},
+  pages   = {202875--202892},
+  year    = {2025},
+}
+
+% Estudo cruzado de datasets de Libras: landmarks MediaPipe+LSTM supera CNN
+% (75.5% vs. 41% top-5). Motiva uso de landmarks em vez de CNN direta. ICCV-W 2023.
+@inproceedings{sarmento2023,
+  author    = {de Avellar Sarmento, Amanda Hellen and Ponti, Moacir Antonelli},
+  title     = {A Cross-Dataset Study on the {Brazilian Sign Language} Translation},
+  booktitle = {Proc.\ ICCV Workshops (CLVL)},
+  year      = {2023},
+  url       = {https://openaccess.thecvf.com/content/ICCV2023W/CLVL/papers/de_Avellar_Sarmento_A_Cross-Dataset_Study_on_the_Brazilian_Sign_Language_Translation_ICCVW_2023_paper.pdf},
+}
+
+% Survey 2020–2025: estado da arte em SLR; 98.1% em classificação estática,
+% 15.7% WER em CSLR contínuo. Discover Artificial Intelligence, Springer.
+@article{survey2025,
+  author  = {{Unknown Author(s)}},
+  title   = {A Comprehensive Survey on Recent Advances and Challenges in
+             Sign Language Recognition Systems},
+  journal = {Discover Artificial Intelligence},
+  publisher = {Springer},
+  year    = {2025},
+  doi     = {10.1007/s44163-025-00629-7},
+}
+
+% Kalman filtering para suavizar sequências de esqueleto em reconhecimento de ações.
+% TODO: verificar autores, título exato, volume e páginas — IEEE TCSVT 2023.
+@article{wan2023kalman,
+  author  = {Wan, Jian and others},
+  title   = {Kalman Filtering for Skeleton-Based Human Action Recognition},
+  journal = {IEEE Trans.\ Circuits Syst.\ Video Technol.},
+  year    = {2023},
+  note    = {TODO: verificar volume, número, páginas e DOI},
+}
+
+% WLASL: 21.083 vídeos, 2.000 glossas ASL, 100+ sinalizadores. WACV 2020.
+% Ilustra escala de datasets modernos de ISLR.
+@inproceedings{wlasl2020,
+  author        = {Li, Dongxu and others},
+  title         = {Word-Level Deep Sign Language Recognition from Video:
+                   {A} New Large-Scale Dataset and Methods Comparison},
+  booktitle     = {Proc.\ WACV},
+  year          = {2020},
+  eprint        = {1910.11006},
+  archivePrefix = {arXiv},
+}
+
+% SPOTER: transformer pose-based, treinado sobre keypoints (Vision API) do WLASL100.
+% Comparação direta com nosso pipeline: mesma modalidade (esqueleto, sem RGB).
+@inproceedings{bohacek2022spoter,
+  author    = {Boh{\'a}{\v{c}}ek, Maty{\'a}{\v{s}} and Hr{\'u}z, Marek},
+  title     = {Sign Pose-Based Transformer for Word-Level Sign Language
+               Recognition},
+  booktitle = {Proc.\ WACV Workshops (HADCV)},
+  year      = {2022},
+}
+
+% Mesmo SPOTER, re-treinado sobre keypoints MediaPipe (mesmo extrator de landmarks
+% usado neste trabalho) em vez da Vision API original -- baseline pose-only mais
+% próximo metodologicamente do nosso pipeline.
+@inproceedings{bohacek2022mediapipe,
+  author    = {Boh{\'a}{\v{c}}ek, Maty{\'a}{\v{s}} and Cao, Zhuo and Hr{\'u}z, Marek},
+  title     = {Combining Efficient and Precise Sign Language Recognition: Good
+               Pose Estimation Library Is All You Need},
+  booktitle = {Proc.\ CVPR Workshops (AVA)},
+  year      = {2022},
+  eprint    = {2210.00893},
+  archivePrefix = {arXiv},
+}
+
+% SL-GCN / SAM-SLR-v2: baseline esqueleto-apenas (GCN sobre keypoints) no WLASL2000
+% completo (2000 classes) -- comparação de escopo de vocabulário com nosso subset
+% de 275 classes.
+@misc{jiang2021samslr,
+  author        = {Jiang, Songyao and Sun, Bin and Wang, Lichen and Bai, Yue
+                   and Li, Kunpeng and Fu, Yun},
+  title         = {Sign Language Recognition via Skeleton-Aware Multi-Model
+                   Ensemble},
+  year          = {2021},
+  eprint        = {2110.06161},
+  archivePrefix = {arXiv},
+}
+
+% SAKA: módulo de grafo com keyframes âncora para CSLR. ICASSP 2026.
+% Relaciona com nossa F4 (GEI ponderado por saliência): ambos destacam frames-chave.
+@inproceedings{ye2026,
+  author    = {Ye, Hao and others},
+  title     = {{SAKA}: Spatially-Adaptive and Keyframe-Anchored Graph Network
+               for Continuous Sign Language Recognition},
+  booktitle = {Proc.\ ICASSP},
+  year      = {2026},
+  note      = {Arquivo: refs/2026\_Ye\_SAKA...pdf},
+}
+
+% Kalman fusion com gate aprendido para CSLR. ICASSP 2026. Chave mantida como
+% "zhang2024" por compatibilidade com paper_libras2026.tex; autores corretos
+% confirmados via Sbrt_2026_Libras.pdf (ref. [12]): Liu, Gao, Wang e Wei.
+@inproceedings{zhang2024,
+  author    = {Liu, B. and Gao, S. and Wang, Y. and Wei, Y.},
+  title     = {Dynamic {Kalman} Fusion for Robust Continuous Sign Language Recognition},
+  booktitle = {Proc.\ IEEE Int.\ Conf.\ Acoust.\ Speech Signal Process.\ (ICASSP)},
+  pages     = {19122--19126},
+  year      = {2026},
+  note      = {Arquivo: refs/2026\_Liu\_Dynamic\_Kalman\_Fusion...pdf},
+}
+
+% ── Entradas adicionadas para a extensão journal (ASL/BSL) ──────────────────
+
+% Formulação clássica do filtro de Kalman. Citado na Seção de metodologia.
+@article{kalman1960,
+  author  = {Kalman, Rudolph Emil},
+  title   = {A New Approach to Linear Filtering and Prediction Problems},
+  journal = {Journal of Basic Engineering},
+  volume  = {82},
+  number  = {1},
+  pages   = {35--45},
+  year    = {1960},
+}
+
+% BSLDict: dicionário de sinais isolados em BSL, 9.283 sinais / 14.210 clipes,
+% 28+ sinalizadores, fonte signbsl.com, CC-BY 4.0. Base BSL usada na extensão journal.
+@inproceedings{momeni2020bsldict,
+  author    = {Momeni, Liliane and Varol, G{\"u}l and Albanie, Samuel and
+               Afouras, Triantafyllos and Zisserman, Andrew},
+  title     = {Watch, Read and Lookup: Learning to Spot Signs from Multiple Supervisors},
+  booktitle = {Proc.\ ACCV},
+  year      = {2020},
+}
+
+% BSL-1K: origem da abordagem de mouthing-cues para BSL em larga escala,
+% predecessor do BOBSL; acesso restrito (acordo com a BBC).
+@inproceedings{albanie2020bsl1k,
+  author    = {Albanie, Samuel and Varol, G{\"u}l and Momeni, Liliane and
+               Afouras, Triantafyllos and Chung, Joon Son and Fox, Neil and
+               Zisserman, Andrew},
+  title     = {{BSL-1K}: Scaling Up Co-articulated Sign Language Recognition Using Mouthing Cues},
+  booktitle = {Proc.\ ECCV},
+  year      = {2020},
+}
+
+% BOBSL: extensão pública do BSL-1K (BBC-Oxford British Sign Language Dataset),
+% ~1.400h, acesso mediante acordo BBC; ~591GiB só de pose. Citado para justificar
+% a escolha de BSLDict como alternativa viável de BSL isolado nesta extensão.
+@article{albanie2021bobsl,
+  author        = {Albanie, Samuel and Varol, G{\"u}l and Momeni, Liliane and
+                   Bull, Hannah and Afouras, Triantafyllos and Chowdhury, Himel and
+                   Fox, Neil and Woll, Bencie and Cooper, Rob and McParland, Andrew and
+                   Zisserman, Andrew},
+  title         = {{BBC-Oxford} British Sign Language Dataset},
+  journal       = {arXiv preprint arXiv:2111.03635},
+  year          = {2021},
+}
+
+% MS-ASL: 1.000 classes, 200+ sinalizadores; segunda base de referência em ISLR-ASL,
+% citada para contextualizar a escolha de WLASL como base ASL principal.
+@inproceedings{joze2019msasl,
+  author    = {Joze, Hamid Reza Vaezi and Koller, Oscar},
+  title     = {{MS-ASL}: A Large-Scale Data Set and Benchmark for Understanding
+               American Sign Language},
+  booktitle = {Proc.\ BMVC},
+  year      = {2019},
+}
+
+% Revisão sistemática de reconhecimento de Libras baseado em IA (métodos, métricas, bases).
+@inproceedings{costa2025review,
+  author    = {Costa, V. and Tomaszewski, J. P. and Pereira, L. and
+               Santana, B. S. and Corr{\^e}a, G.},
+  title     = {{AI}-based Approaches for {Brazilian} Sign Language Recognition:
+               A Systematic Literature Review},
+  booktitle = {Proc.\ Braz.\ Symp.\ Multim.\ Web},
+  pages     = {585--597},
+  year      = {2025},
+}
+
+% Revisão clássica de técnicas de reconhecimento de gestos manuais e língua de sinais.
+@article{cheok2019review,
+  author  = {Cheok, Ming Jin and Omar, Zaid and Jaward, Mohamed Hisham},
+  title   = {A Review of Hand Gesture and Sign Language Recognition Techniques},
+  journal = {Int.\ J.\ Mach.\ Learn.\ Cybern.},
+  volume  = {10},
+  number  = {1},
+  pages   = {131--153},
+  year    = {2019},
+}
+
+% Survey de ISLR na última década; discute datasets, splits signer-independent
+% e desafios de generalização entre sinalizadores. ICCV 2023.
+@inproceedings{sarhan2023islr,
+  author    = {Sarhan, Nada and Frintrop, Simone},
+  title     = {Unraveling a Decade: A Comprehensive Survey on Isolated Sign
+               Language Recognition},
+  booktitle = {Proc.\ IEEE/CVF Int.\ Conf.\ Comput.\ Vis.\ Workshops},
+  pages     = {3210--3219},
+  year      = {2023},
+}
+
+% Reconhecimento de sinais estáticos via DL; contextualiza classificadores rasos
+% vs. profundos para ISLR em regime de poucos dados.
+@article{wadhawan2020static,
+  author  = {Wadhawan, Ankita and Kumar, Parteek},
+  title   = {Deep Learning-Based Sign Language Recognition System for Static Signs},
+  journal = {Neural Computing and Applications},
+  volume  = {32},
+  number  = {12},
+  pages   = {7957--7968},
+  year    = {2020},
+}
+
+% Base original MINDS-Libras: 1.560 amostras, 12 sinalizadores, 20 classes.
+@article{rezende2021minds,
+  author  = {Rezende, T. and Almeida, S. and Guimar{\~a}es, F.},
+  title   = {Development and Validation of a {Brazilian} Sign Language Database
+             for Human Gesture Recognition},
+  journal = {Neural Computing and Applications},
+  pages   = {1--19},
+  month   = mar,
+  year    = {2021},
+}
+
+% Framework MediaPipe Holistic (pose + mãos + face) usado para extração de landmarks.
+@inproceedings{lugaresi2019mediapipe,
+  author    = {Lugaresi, Camillo and Tang, Jiuqiang and Nash, Hadon and
+               McClanahan, Chris and Uboweja, Esha and Hays, Michael and
+               Zhang, Fan and Chang, Chuo-Ling and Yong, Ming Guang and
+               Lee, Juhyun and others},
+  title     = {{MediaPipe}: A Framework for Perceiving and Perceiving Systems},
+  booktitle = {Proc.\ Int.\ Conf.\ Mach.\ Learn.\ Workshop Comput.\ Vis.\ AR/VR},
+  year      = {2019},
+}

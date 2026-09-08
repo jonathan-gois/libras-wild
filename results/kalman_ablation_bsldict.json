@@ -1,0 +1,319 @@
+{
+  "corpus": "bsldict",
+  "n_samples": 1373,
+  "n_classes": 239,
+  "n_groups": 18,
+  "group_kind": "source_site_db (LOSO)",
+  "min_per_class": 5,
+  "k_folds": 5,
+  "results": {
+    "gei": {
+      "kalman_on": {
+        "SVM": {
+          "B": {
+            "acc_mean": 0.03787392169873922,
+            "acc_std": 0.008803980775855334,
+            "f1_mean": 0.031023128047945565,
+            "f1_std": 0.008211742457182864,
+            "k_folds": 5
+          },
+          "GROUP": {
+            "acc_mean": 0.009111613698094009,
+            "acc_std": 0.013751445591795702,
+            "f1_mean": 0.006370947533466545,
+            "f1_std": 0.0112532718185307,
+            "n_folds": 16,
+            "skipped": [
+              "- Georgia Grace",
+              "- Jessica Boland"
+            ],
+            "per_group": {
+              "- Ben Fletcher - Tech Signs": 0.0,
+              "- Bob McCluskey": 0.0,
+              "- Deafax": 0.03571428571428571,
+              "- Exeter Deaf Academy": 0.0,
+              "- Hair and Beauty": 0.0,
+              "- Karl O'Keeffe": 0.03804347826086957,
+              "- Nathanael Farley": 0.0,
+              "- National Deaf Children's Society": 0.0,
+              "- QIA Dictionary of ICT": 0.023255813953488372,
+              "- Royal Association for Deaf": 0.0,
+              "- Sam Simon": 0.0,
+              "- Scottish Sensory Centre": 0.030303030303030304,
+              "- SignStation": 0.008368200836820083,
+              "- University of Wolverhampton": 0.0,
+              "nan": 0.0,
+              "unknown": 0.010101010101010102
+            }
+          }
+        },
+        "MLP": {
+          "B": {
+            "acc_mean": 0.02840610484406105,
+            "acc_std": 0.007066696442000086,
+            "f1_mean": 0.022891572660915724,
+            "f1_std": 0.006875876815050196,
+            "k_folds": 5
+          }
+        },
+        "lopo_backbone": "SVM"
+      },
+      "kalman_off": {
+        "SVM": {
+          "B": {
+            "acc_mean": 0.03933908427339085,
+            "acc_std": 0.010193743003922543,
+            "f1_mean": 0.0318148323695769,
+            "f1_std": 0.008056660122677105,
+            "k_folds": 5
+          },
+          "GROUP": {
+            "acc_mean": 0.013014763532184621,
+            "acc_std": 0.026159634022682832,
+            "f1_mean": 0.010316104321957885,
+            "f1_std": 0.025562991032718793,
+            "n_folds": 16,
+            "skipped": [
+              "- Georgia Grace",
+              "- Jessica Boland"
+            ],
+            "per_group": {
+              "- Ben Fletcher - Tech Signs": 0.0,
+              "- Bob McCluskey": 0.0,
+              "- Deafax": 0.10714285714285714,
+              "- Exeter Deaf Academy": 0.017241379310344827,
+              "- Hair and Beauty": 0.0,
+              "- Karl O'Keeffe": 0.03260869565217391,
+              "- Nathanael Farley": 0.0,
+              "- National Deaf Children's Society": 0.0,
+              "- QIA Dictionary of ICT": 0.023255813953488372,
+              "- Royal Association for Deaf": 0.0,
+              "- Sam Simon": 0.0,
+              "- Scottish Sensory Centre": 0.0,
+              "- SignStation": 0.008368200836820083,
+              "- University of Wolverhampton": 0.006993006993006993,
+              "nan": 0.0,
+              "unknown": 0.012626262626262626
+            }
+          }
+        },
+        "MLP": {
+          "B": {
+            "acc_mean": 0.03933908427339085,
+            "acc_std": 0.007823782028419959,
+            "f1_mean": 0.032892735488355924,
+            "f1_std": 0.00593810810883833,
+            "k_folds": 5
+          }
+        },
+        "lopo_backbone": "SVM"
+      }
+    },
+    "kin": {
+      "kalman_on": {
+        "SVM": {
+          "B": {
+            "acc_mean": 0.06481486396814864,
+            "acc_std": 0.0052683038998700225,
+            "f1_mean": 0.048354675128445684,
+            "f1_std": 0.005648113691939418,
+            "k_folds": 5
+          }
+        },
+        "MLP": {
+          "B": {
+            "acc_mean": 0.0742879893828799,
+            "acc_std": 0.014327098445963915,
+            "f1_mean": 0.058850279647359935,
+            "f1_std": 0.01063492335786266,
+            "k_folds": 5
+          },
+          "GROUP": {
+            "acc_mean": 0.04379868717695752,
+            "acc_std": 0.04893691226711847,
+            "f1_mean": 0.03942648869195643,
+            "f1_std": 0.048521953634792385,
+            "n_folds": 16,
+            "skipped": [
+              "- Georgia Grace",
+              "- Jessica Boland"
+            ],
+            "per_group": {
+              "- Ben Fletcher - Tech Signs": 0.0,
+              "- Bob McCluskey": 0.0,
+              "- Deafax": 0.07142857142857142,
+              "- Exeter Deaf Academy": 0.08620689655172414,
+              "- Hair and Beauty": 0.0,
+              "- Karl O'Keeffe": 0.07065217391304347,
+              "- Nathanael Farley": 0.046153846153846156,
+              "- National Deaf Children's Society": 0.0,
+              "- QIA Dictionary of ICT": 0.023255813953488372,
+              "- Royal Association for Deaf": 0.0,
+              "- Sam Simon": 0.14285714285714285,
+              "- Scottish Sensory Centre": 0.15151515151515152,
+              "- SignStation": 0.06694560669456066,
+              "- University of Wolverhampton": 0.013986013986013986,
+              "nan": 0.0,
+              "unknown": 0.027777777777777776
+            }
+          }
+        },
+        "lopo_backbone": "MLP"
+      },
+      "kalman_off": {
+        "SVM": {
+          "B": {
+            "acc_mean": 0.049531519575315194,
+            "acc_std": 0.012320516017792427,
+            "f1_mean": 0.03304442386502696,
+            "f1_std": 0.00608251033014869,
+            "k_folds": 5
+          }
+        },
+        "MLP": {
+          "B": {
+            "acc_mean": 0.061178500331785,
+            "acc_std": 0.014066994010941814,
+            "f1_mean": 0.04974287610200019,
+            "f1_std": 0.007881310362094648,
+            "k_folds": 5
+          },
+          "GROUP": {
+            "acc_mean": 0.04982339994976266,
+            "acc_std": 0.03736775098644739,
+            "f1_mean": 0.04561064874135268,
+            "f1_std": 0.04340292566234938,
+            "n_folds": 16,
+            "skipped": [
+              "- Georgia Grace",
+              "- Jessica Boland"
+            ],
+            "per_group": {
+              "- Ben Fletcher - Tech Signs": 0.0,
+              "- Bob McCluskey": 0.05555555555555555,
+              "- Deafax": 0.10714285714285714,
+              "- Exeter Deaf Academy": 0.10344827586206896,
+              "- Hair and Beauty": 0.1111111111111111,
+              "- Karl O'Keeffe": 0.02717391304347826,
+              "- Nathanael Farley": 0.038461538461538464,
+              "- National Deaf Children's Society": 0.0,
+              "- QIA Dictionary of ICT": 0.046511627906976744,
+              "- Royal Association for Deaf": 0.08333333333333333,
+              "- Sam Simon": 0.0,
+              "- Scottish Sensory Centre": 0.06060606060606061,
+              "- SignStation": 0.04184100418410042,
+              "- University of Wolverhampton": 0.02097902097902098,
+              "nan": 0.08333333333333333,
+              "unknown": 0.017676767676767676
+            }
+          }
+        },
+        "lopo_backbone": "MLP"
+      }
+    },
+    "combined": {
+      "kalman_on": {
+        "SVM": {
+          "B": {
+            "acc_mean": 0.064806901128069,
+            "acc_std": 0.010810519232130425,
+            "f1_mean": 0.048387432478972196,
+            "f1_std": 0.00519247628993645,
+            "k_folds": 5
+          }
+        },
+        "MLP": {
+          "B": {
+            "acc_mean": 0.07280955540809556,
+            "acc_std": 0.019728051958553983,
+            "f1_mean": 0.059898248385839625,
+            "f1_std": 0.0162416305745943,
+            "k_folds": 5
+          },
+          "GROUP": {
+            "acc_mean": 0.0425014056153135,
+            "acc_std": 0.07986385323693691,
+            "f1_mean": 0.03777633143525397,
+            "f1_std": 0.08014080212126673,
+            "n_folds": 16,
+            "skipped": [
+              "- Georgia Grace",
+              "- Jessica Boland"
+            ],
+            "per_group": {
+              "- Ben Fletcher - Tech Signs": 0.3333333333333333,
+              "- Bob McCluskey": 0.0,
+              "- Deafax": 0.10714285714285714,
+              "- Exeter Deaf Academy": 0.05172413793103448,
+              "- Hair and Beauty": 0.0,
+              "- Karl O'Keeffe": 0.03260869565217391,
+              "- Nathanael Farley": 0.038461538461538464,
+              "- National Deaf Children's Society": 0.0,
+              "- QIA Dictionary of ICT": 0.023255813953488372,
+              "- Royal Association for Deaf": 0.0,
+              "- Sam Simon": 0.0,
+              "- Scottish Sensory Centre": 0.030303030303030304,
+              "- SignStation": 0.03347280334728033,
+              "- University of Wolverhampton": 0.006993006993006993,
+              "nan": 0.0,
+              "unknown": 0.022727272727272728
+            }
+          }
+        },
+        "lopo_backbone": "MLP"
+      },
+      "kalman_off": {
+        "SVM": {
+          "B": {
+            "acc_mean": 0.05171864631718646,
+            "acc_std": 0.012071594359503326,
+            "f1_mean": 0.03508091169378665,
+            "f1_std": 0.008107155139667161,
+            "k_folds": 5
+          }
+        },
+        "MLP": {
+          "B": {
+            "acc_mean": 0.06118646317186464,
+            "acc_std": 0.011399304882292374,
+            "f1_mean": 0.047462916969486305,
+            "f1_std": 0.008722962140600386,
+            "k_folds": 5
+          },
+          "GROUP": {
+            "acc_mean": 0.046455238926569345,
+            "acc_std": 0.04100350926979569,
+            "f1_mean": 0.04182555138676759,
+            "f1_std": 0.04168002978714955,
+            "n_folds": 16,
+            "skipped": [
+              "- Georgia Grace",
+              "- Jessica Boland"
+            ],
+            "per_group": {
+              "- Ben Fletcher - Tech Signs": 0.0,
+              "- Bob McCluskey": 0.05555555555555555,
+              "- Deafax": 0.07142857142857142,
+              "- Exeter Deaf Academy": 0.017241379310344827,
+              "- Hair and Beauty": 0.1111111111111111,
+              "- Karl O'Keeffe": 0.05434782608695652,
+              "- Nathanael Farley": 0.023076923076923078,
+              "- National Deaf Children's Society": 0.0,
+              "- QIA Dictionary of ICT": 0.06976744186046512,
+              "- Royal Association for Deaf": 0.08333333333333333,
+              "- Sam Simon": 0.14285714285714285,
+              "- Scottish Sensory Centre": 0.06060606060606061,
+              "- SignStation": 0.029288702928870293,
+              "- University of Wolverhampton": 0.006993006993006993,
+              "nan": 0.0,
+              "unknown": 0.017676767676767676
+            }
+          }
+        },
+        "lopo_backbone": "MLP"
+      }
+    }
+  },
+  "elapsed_s": 2329.5282502174377,
+  "note": "Kalman on/off ablation: normalize_v3->kalman_v3->rel_hands vs normalize_v3->rel_hands, for gei/kin/combined branches, SVM+MLP backbones, Prot-B for all cells, LOPO/LOSO only for the per-branch/kalman-condition winning backbone."
+}
