@@ -413,3 +413,69 @@
   booktitle = {Proc.\ Int.\ Conf.\ Mach.\ Learn.\ Workshop Comput.\ Vis.\ AR/VR},
   year      = {2019},
 }
+
+% ── Entradas adicionadas 2026-09-08: SOTA atualizado de Libras (LOPO) e WLASL ──
+% descoberto via revisão de literatura pós-consolidação -- corrige uma lacuna
+% de citação séria: o rascunho anterior comparava LOPO só com Rego/Passos,
+% desatualizados frente a estes três trabalhos (2023-2026) sob o MESMO
+% protocolo LOPO/nested-LOPO no MESMO MINDS-Libras.
+
+% Skeleton-image (Skeleton-DML-style) + ResNet2D. 93%+-5% acc/F1 LOPO no
+% MINDS-Libras (12 signers, 20 classes), 82% LIBRAS-UFOP. Motivou nosso
+% run_skeleton_cnn_libras.py.
+@misc{alves2024skeleton,
+  author        = {Alves, Carlos Eduardo G. R. and Boldt, Francisco de A. and
+                   Paix{\~a}o, Thiago M.},
+  title         = {Enhancing {Brazilian} Sign Language Recognition through
+                   Skeleton Image Representation},
+  year          = {2024},
+  eprint        = {2404.19148},
+  archivePrefix = {arXiv},
+  note          = {IEEE-published; nested leave-one-person-out (LOPO)
+                   protocol, same MINDS-Libras split configuration (12
+                   signers, 20 classes) used in the present paper.},
+}
+
+% Seleção de subconjunto de landmarks (ASL-2nd, 80 keypoints) + mesma
+% representação skeleton-image + ResNet18; supera Alves2024 em LIBRAS-UFOP
+% (F1 0.91 vs. 0.80) e iguala em MINDS-Libras (F1 0.94). Aceito IEEE SAS 2026.
+@misc{dossantos2025landmarksubset,
+  author        = {dos Santos, Daniele L. V. and Pereira, Thiago B. and
+                   Alves, Carlos Eduardo G. R. and Tello, Richard J. M. G. and
+                   Boldt, Francisco de A. and Paix{\~a}o, Thiago M.},
+  title         = {Proper Body Landmark Subset Enables More Accurate and
+                   5{X} Faster Recognition of Isolated Signs in {LIBRAS}},
+  year          = {2025},
+  eprint        = {2510.24887},
+  archivePrefix = {arXiv},
+  note          = {Accepted, IEEE SAS 2026. Nested LOPO, MINDS-Libras and
+                   LIBRAS-UFOP.},
+}
+
+% Referenciado por alves2024skeleton como baseline direto no mesmo protocolo
+% LOPO: 91%+-7% MINDS-Libras, 74%+-4% LIBRAS-UFOP. Distinto de decastro2022
+% (SIBGRAPI, RGB 3D-CNN, protocolo não confirmado -- não confundir as duas
+% entradas De Castro).
+@misc{decastro2023skeleton,
+  author = {De Castro, A. and others},
+  title  = {{TODO: t\'itulo exato -- ver alves2024skeleton, ref. interna
+            ``De Castro et al. 2023'', LOPO 91\%$\pm$7\% MINDS-Libras}},
+  year   = {2023},
+  note   = {TODO: venue/DOI exatos pendentes de verificação},
+}
+
+% Novo SOTA em WLASL100/300 (93.70%/89.97%), skeleton-only, muito acima do
+% SPOTER/SL-GCN já citados (bohacek2022mediapipe, jiang2021samslr). Substitui
+% estes como o baseline pose-only mais forte disponível.
+@misc{liu2025dslnet,
+  author        = {Liu, Liangjin and Zheng, Haoyang and Zhu, Zhengzhong and
+                   Zhou, Pei},
+  title         = {Skeleton-Based Sign Language Recognition Using a
+                   Dual-Stream Spatio-Temporal Dynamic Graph Convolutional
+                   Network},
+  year          = {2025},
+  eprint        = {2509.08661},
+  archivePrefix = {arXiv},
+  note          = {Accepted, IEEE CogMI 2025 (``DSLNet''). $93.70\%$
+                   WLASL100, $89.97\%$ WLASL300, skeleton-only.},
+}
